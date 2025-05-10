@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GUC Internship System - SCAD Office</title>
+    <link rel="stylesheet" href="SCAD.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">GUC Internship System</div>
+        <div class="user-controls">
+            <span id="currentTime"></span>
+            <button id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+        </div>
+    </header>
+
+    <main class="dashboard">
+        <nav class="sidebar">
+            <ul>
+                <li class="active" data-section="dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</li>
+                <li data-section="internships"><i class="fas fa-briefcase"></i> Internships</li>
+                <li data-section="students"><i class="fas fa-users"></i> Students</li>
+                <li data-section="reports"><i class="fas fa-file-alt"></i> Reports</li>
+                <li data-section="workshops"><i class="fas fa-chalkboard-teacher"></i> Workshops</li>
+            </ul>
+        </nav>
+
+        <div class="content">
+            <!-- Dashboard Section -->
+            <section id="dashboard-section" class="section active">
+                <h1><i class="fas fa-tachometer-alt"></i> SCAD Office Dashboard</h1>
+                <div class="card">
+                    <h2>Set Internship Cycle Dates</h2>
+                    <form id="cycleForm">
+                        <div class="form-row">
+                            <div class="input-group">
+                                <label for="startDate">Start Date</label>
+                                <input type="date" id="startDate" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="endDate">End Date</label>
+                                <input type="date" id="endDate" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-primary">Save Dates</button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Internships Section -->
+            <section id="internships-section" class="section">
+                <div class="section-header">
+                    <h1><i class="fas fa-briefcase"></i> Internship Listings</h1>
+                </div>
+                
+                <div class="filters">
+                    <input type="text" id="internshipSearch" placeholder="Search by title or company...">
+                    <select id="internshipFilter">
+                        <option value="">All Industries</option>
+                        <option>Technology</option>
+                        <option>Finance</option>
+                        <option>Healthcare</option>
+                        <option>Supply Chain</option>
+                    </select>
+                </div>
+                
+                <div class="card-list" id="internshipList"></div>
+            </section>
+
+            <!-- Students Section -->
+            <section id="students-section" class="section">
+                <h1><i class="fas fa-users"></i> Student Management</h1>
+                <div class="card">
+                    <div class="filters">
+                        <select id="studentStatusFilter">
+                            <option value="">All Students</option>
+                            <option>Applied</option>
+                            <option>Pending</option>
+                            <option>Internship Started</option>
+                        </select>
+                    </div>
+                    <div class="table-container">
+                        <table id="studentTable"></table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Reports Section -->
+            <section id="reports-section" class="section">
+                <h1><i class="fas fa-file-alt"></i> Evaluation Reports</h1>
+                <div class="card">
+                    <div class="filters">
+                        <select id="reportFilter">
+                            <option value="">All Reports</option>
+                            <option>Pending</option>
+                            <option>Accepted</option>
+                            <option>Flagged</option>
+                        </select>
+                    </div>
+                    <div class="report-list" id="reportList"></div>
+                </div>
+            </section>
+
+            <!-- Workshops Section -->
+            <section id="workshops-section" class="section">
+                <h1><i class="fas fa-chalkboard-teacher"></i> Workshop Management</h1>
+                <div class="card">
+                    <div class="workshop-controls">
+                        <button id="addWorkshopBtn" class="btn-primary"><i class="fas fa-plus"></i> Add New Workshop</button>
+                    </div>
+                    
+                    <div class="workshop-form-container" id="workshopFormContainer" style="display: none;">
+                        <form id="workshopForm">
+                            <div class="form-row">
+                                <div class="input-group">
+                                    <label for="workshopName">Workshop Name</label>
+                                    <input type="text" id="workshopName" required>
+                                </div>
+                                <div class="input-group">
+                                    <label for="workshopDescription">Short Description</label>
+                                    <textarea id="workshopDescription" rows="3" required></textarea>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="input-group">
+                                    <label for="startDateTime">Start Date & Time</label>
+                                    <input type="datetime-local" id="startDateTime" required>
+                                </div>
+                                <div class="input-group">
+                                    <label for="endDateTime">End Date & Time</label>
+                                    <input type="datetime-local" id="endDateTime" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="input-group">
+                                    <label for="speakerBio">Speaker Bio</label>
+                                    <textarea id="speakerBio" rows="3" required></textarea>
+                                </div>
+                                <div class="input-group">
+                                    <label for="workshopAgenda">Workshop Agenda</label>
+                                    <textarea id="workshopAgenda" rows="3" required></textarea>
+                                </div>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="submit" class="btn-primary">Save Workshop</button>
+                                <button type="button" id="cancelWorkshopBtn" class="btn-secondary">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div class="workshop-list" id="workshopList"></div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="SCAD.js"></script>
+</body>
+</html>
