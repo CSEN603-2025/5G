@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evaluations & Reports | GUC Internship</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="pro student.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">GUC INTERNSHIP SYSTEM</div>
+    <div class="student-type">Student/PRO Student</div>
+  </header>
+
+  <!-- Navigation Back to Main -->
+  <nav class="subnav">
+    <a href="pro-student2.html" class="btn-secondary">
+      <i class="fas fa-arrow-left"></i> Back to Dashboard
+    </a>
+  </nav>
+
+  <!-- Loading Overlay -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-spinner">
+      <i class="fas fa-spinner fa-spin"></i>
+      <p>Loading...</p>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="container">
+    <!-- Company Evaluations Section -->
+    <section class="card evaluations-card">
+      <h2><i class="fas fa-star"></i> Company Evaluations</h2>
+      <p class="subtitle">Share your experience with companies you've worked with</p>
+      
+      <div class="evaluations-container" id="evaluationsContainer">
+        <!-- Evaluations will be loaded here -->
+      </div>
+      
+      <!-- Evaluation Form Container -->
+      <div class="form-container" id="evaluationFormContainer" style="display: none;">
+        <!-- Form will be loaded here -->
+      </div>
+      
+      <button class="btn-primary" id="addEvaluationBtn">
+        <i class="fas fa-plus"></i> Add Evaluation
+      </button>
+    </section>
+
+    <!-- Internship Reports Section -->
+    <section class="card reports-card">
+      <h2><i class="fas fa-file-alt"></i> Internship Reports</h2>
+      <p class="subtitle">Document your internship experiences</p>
+      
+      <div class="reports-container" id="reportsContainer">
+        <!-- Reports will be loaded here -->
+      </div>
+      
+      <!-- Report Form Container -->
+      <div class="form-container" id="reportFormContainer" style="display: none;">
+        <!-- Form will be loaded here -->
+      </div>
+      
+      <button class="btn-primary" id="addReportBtn">
+        <i class="fas fa-plus"></i> Add Report
+      </button>
+    </section>
+    
+    <!-- Final Report Section -->
+    <section class="card final-report-section">
+      <h2><i class="fas fa-flag-checkered"></i> Final Report Submission</h2>
+      <p class="subtitle">Select and submit your final internship report</p>
+      
+      <div class="form-group">
+        <label for="selectFinalReport">Select Report to Submit *</label>
+        <select id="selectFinalReport" class="form-control">
+          <option value="">-- Select a report --</option>
+          <!-- Reports will be loaded here -->
+        </select>
+      </div>
+      
+      <div class="final-report-actions">
+        <button class="btn-primary" id="previewFinalReportBtn" disabled>
+          <i class="fas fa-eye"></i> Preview Selected Report
+        </button>
+        <button class="btn-success" id="submitFinalReportBtn" disabled>
+          <i class="fas fa-paper-plane"></i> Submit as Final Report
+        </button>
+      </div>
+      
+      <div class="submission-status" id="submissionStatus">
+        <!-- Submission status will appear here -->
+      </div>
+    </section>
+
+    <!-- Report Detail Modal -->
+    <div class="modal" id="reportModal" style="display: none;">
+      <div class="modal-content">
+        <button class="modal-close" id="closeReportModal">&times;</button>
+        <h3 id="modalReportTitle"></h3>
+        <p class="modal-meta" id="modalReportMeta"></p>
+        <div class="modal-section">
+          <h4>Introduction</h4>
+          <p id="modalReportIntro"></p>
+        </div>
+        <div class="modal-section">
+          <h4>Report Content</h4>
+          <p id="modalReportBody"></p>
+          <!-- In your report modal, add a download button -->
+<div class="modal" id="reportModal" style="display: none;">
+  <div class="modal-content">
+    <button class="modal-close" id="closeReportModal">&times;</button>
+    <h3 id="modalReportTitle"></h3>
+    <p class="modal-meta" id="modalReportMeta"></p>
+    <div class="modal-section">
+      <h4>Introduction</h4>
+      <p id="modalReportIntro"></p>
+    </div>
+    <div class="modal-section">
+      <h4>Report Content</h4>
+      <p id="modalReportBody"></p>
+    </div>
+    <!-- Add this download button -->
+    <div class="modal-actions">
+      <button class="btn-secondary" id="downloadReportPdf">
+        <i class="fas fa-download"></i> Download as PDF
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Also add to your reports list items -->
+<div class="report-actions">
+  <!-- Existing buttons -->
+  <button class="btn-primary view-report-btn" data-id="${report.id}">
+    <i class="fas fa-eye"></i> View
+  </button>
+  <!-- Add this download button -->
+  <button class="btn-primary download-report-btn" data-id="${report.id}">
+    <i class="fas fa-download"></i> PDF
+  </button>
+  <!-- Rest of your buttons -->
+</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Final Report Confirmation Modal -->
+    <div class="modal" id="finalReportModal" style="display: none;">
+      <div class="modal-content">
+        <button class="modal-close" id="closeFinalReportModal">&times;</button>
+        <h3>Confirm Final Report Submission</h3>
+        <p>You are about to submit the following report as your final internship report:</p>
+        
+        <div class="confirmation-details">
+          <h4 id="finalReportTitlePreview"></h4>
+          <p id="finalReportCompanyPreview"></p>
+          <p id="finalReportDatePreview"></p>
+        </div>
+        
+        <div class="warning-message">
+          <i class="fas fa-exclamation-triangle"></i>
+          <p>This will be your official submission and cannot be changed later.</p>
+        </div>
+        
+        <div class="modal-actions">
+          <button class="btn-secondary" id="cancelSubmitBtn">
+            Cancel
+          </button>
+          <button class="btn-success" id="confirmSubmitBtn">
+            <i class="fas fa-check"></i> Confirm Submission
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="evaluation-report.js"></script>
+</body>
+</html>
