@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome - GUC Internship System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="SCAD.css"> <!-- Reusing your existing CSS -->
+    <style>
+        /* Additional styles just for welcome page */
+        .welcome-body {
+            background: linear-gradient(135deg, #D4F1F4 0%, #75E6DA 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .welcome-container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 1000px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .welcome-title {
+            color: #05445E;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+        }
+        
+        .welcome-subtitle {
+            color: #189AB4;
+            margin-bottom: 40px;
+            font-size: 1.2rem;
+        }
+        
+        .role-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .role-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid #D4F1F4;
+        }
+        
+        .role-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(0,0,0,0.1);
+            border-color: #75E6DA;
+        }
+        
+        .role-icon {
+            font-size: 2.5rem;
+            color: #05445E;
+            margin-bottom: 15px;
+        }
+        
+        .role-name {
+            color: #05445E;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .role-desc {
+            color: #189AB4;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .role-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .role-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .welcome-container {
+                padding: 30px 20px;
+            }
+            
+            .welcome-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body class="welcome-body">
+    <div class="welcome-container">
+        <div class="welcome-header">
+            <h1 class="welcome-title"><i class="fas fa-handshake"></i> Welcome to GUC Internship</h1>
+            <p class="welcome-subtitle">Select your role to continue to the portal</p>
+        </div>
+        
+        <div class="role-grid">
+            <div class="role-card" data-role="company">
+                <div class="role-icon">
+                    <i class="fas fa-building"></i>
+                </div>
+                <h3 class="role-name">Company</h3>
+                <p class="role-desc">Post internships and manage students</p>
+            </div>
+            
+            <div class="role-card" data-role="student">
+                <div class="role-icon">
+                    <i class="fas fa-user-graduate"></i>
+                </div>
+                <h3 class="role-name">Student</h3>
+                <p class="role-desc">Find and apply for internships</p>
+            </div>
+            
+            <div class="role-card" data-role="pro-student">
+                <div class="role-icon">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+                <h3 class="role-name">PRO Student</h3>
+                <p class="role-desc">Exclusive Options</p>
+            </div>
+            
+            <div class="role-card" data-role="scad">
+                <div class="role-icon">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <h3 class="role-name">SCAD Office</h3>
+                <p class="role-desc">Administrative portal</p>
+            </div>
+            
+            <div class="role-card" data-role="faculty">
+                <div class="role-icon">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                </div>
+                <h3 class="role-name">Faculty Member</h3>
+                <p class="role-desc">Monitor student progress</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="welcome.js"></script>
+</body>
+</html>
