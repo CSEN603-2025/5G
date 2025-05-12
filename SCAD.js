@@ -7,8 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setInterval(updateTime, 1000);
     updateTime();
 
-    // Navigation with browser history support
-    const navItems = document.querySelectorAll('.sidebar li');
+  const navItems = document.querySelectorAll('.sidebar li');
     const sections = document.querySelectorAll('.section');
     
     // Function to show a section and update history
@@ -89,10 +88,10 @@ document.addEventListener('DOMContentLoaded', function() {
             { id: 5, name: "Ahmed Ali", status: "Internship Started", major: "MET", gpa: 1.5 }
         ],
         reports: [
-            { id: 1, student: "Ahmed Mohamed", company: "TechCorp", status: "Pending", major: "BI" },
-            { id: 2, student: "Mariam Ali", company: "FinanceBank", status: "Accepted", major: "EMS" },
-            { id: 3, student: "Youssef Ibrahim", company: "TechCorp", status: "Pending", major: "Management" },
-            { id: 4, student: "Lina Samir", company: "HealthPlus", status: "Flagged", major: "Applied Arts" },
+            { id: 1, student: "Ahmed Mohamed", company: "TechCorp", status: "Pending", major: "CS" },
+            { id: 2, student: "Mariam Ali", company: "FinanceBank", status: "Accepted", major: "EM" },
+            { id: 3, student: "Youssef Ibrahim", company: "TechCorp", status: "Pending", major: "CS" },
+            { id: 4, student: "Lina Samir", company: "HealthPlus", status: "Flagged", major: "EM" },
             { id: 5, student: "Ahmed Ali", company: "Valu", status: "Accepted", major: "MET" }
         ],
         workshops: [
@@ -116,6 +115,10 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         ]
     };
+
+
+    let selectedCompanyId = null;
+
 
     // Workshop Management
     let editingWorkshopId = null;
@@ -149,6 +152,44 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         `).join('');
     }
+
+
+    // Dummy companies data
+sampleData.companies = [
+    { id: 1, name: "TechCorp", industry: "Technology", description: "Leading tech solutions provider" },
+    { id: 2, name: "FinanceBank", industry: "Finance", description: "Global banking services" },
+    { id: 3, name: "HealthPlus", industry: "Healthcare", description: "Advanced medical research" },
+    { id: 4, name: "LogiTrack", industry: "Supply Chain", description: "Innovative logistics platform" }
+];
+
+function renderCompanies() {
+    const search = document.getElementById('companySearch').value.toLowerCase();
+    const industry = document.getElementById('industryFilter').value;
+
+    const filtered = sampleData.companies.filter(c => {
+        const matchesSearch = c.name.toLowerCase().includes(search);
+        const matchesIndustry = industry === "" || c.industry === industry;
+        return matchesSearch && matchesIndustry;
+    });
+
+    const container = document.getElementById('companyList');
+    if (filtered.length === 0) {
+        container.innerHTML = '<div class="no-results"><i class="fas fa-search"></i> No companies found</div>';
+        return;
+    }
+
+    container.innerHTML = filtered.map(c => `
+        <div class="internship-card">
+            <h3>${c.name}</h3>
+            <p><strong>Industry:</strong> ${c.industry}</p>
+            <p>${c.description}</p>
+            <button class="btn-secondary view-company" data-id="${c.id}">View Details</button>
+            <button class="btn-primary accept-company" data-id="${c.id}">Accept</button>
+            <button class="btn-secondary reject-company" data-id="${c.id}">Reject</button>
+        </div>
+    `).join('');
+}
+
 
     function formatWorkshopDate(dateTimeString) {
         const date = new Date(dateTimeString);
@@ -246,7 +287,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Other render functions
+    // Other render functions (internships, students, reports) remain the same as before
     function renderInternships() {
         const searchTerm = document.getElementById('internshipSearch').value.toLowerCase();
         const industryFilter = document.getElementById('internshipFilter').value;
@@ -348,6 +389,10 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('internshipFilter').addEventListener('change', renderInternships);
     document.getElementById('studentStatusFilter').addEventListener('change', renderStudents);
     document.getElementById('reportFilter').addEventListener('change', renderReports);
+    document.getElementById('companySearch').addEventListener('input', renderCompanies);
+    document.getElementById('industryFilter').addEventListener('change', renderCompanies);
+    renderCompanies();
+
 
     // Initial render
     renderInternships();
@@ -394,5 +439,86 @@ document.addEventListener('DOMContentLoaded', function() {
                 window.location.href = 'login.html';
             }
         }
+
+// View Company
+if (e.target.matches('.view-company, .view-company *')) {
+    const id = parseInt(e.target.closest('.view-company').dataset.id);
+    const company = sampleData.companies.find(c => c.id === id);
+    if (company) {
+        selectedCompanyId = company.id;
+        document.getElementById('modalCompanyName').textContent = company.name;
+        document.getElementById('modalCompanyIndustry').textContent = company.industry;
+        document.getElementById('modalCompanyDescription').textContent = company.description;
+        document.getElementById('companyModal').style.display = 'flex';
+        document.getElementById('companyActionMessage').textContent = "";
+    }
+}
+
+
+
+// Accept Company
+// Accept Company from card
+if (e.target.matches('.accept-company, .accept-company *')) {
+    const id = parseInt(e.target.closest('.accept-company').dataset.id);
+    const company = sampleData.companies.find(c => c.id === id);
+    if (company) {
+        selectedCompanyId = company.id;
+        document.getElementById('modalCompanyName').textContent = company.name;
+        document.getElementById('modalCompanyIndustry').textContent = company.industry;
+        document.getElementById('modalCompanyDescription').textContent = company.description;
+        document.getElementById('companyActionMessage').textContent = `${company.name} has been accepted.`;
+        document.getElementById('companyActionMessage').style.color = 'green';
+        document.getElementById('companyModal').style.display = 'flex';
+    }
+}
+
+
+// Reject Company
+// Accept Company from card
+if (e.target.matches('.accept-company, .accept-company *')) {
+    const id = parseInt(e.target.closest('.accept-company').dataset.id);
+    const company = sampleData.companies.find(c => c.id === id);
+    if (company) {
+        selectedCompanyId = company.id;
+        document.getElementById('modalCompanyName').textContent = company.name;
+        document.getElementById('modalCompanyIndustry').textContent = company.industry;
+        document.getElementById('modalCompanyDescription').textContent = company.description;
+        document.getElementById('companyActionMessage').textContent = "";
+        document.getElementById('companyModal').style.display = 'flex';
+
+    }  
+  }  // Pre-fill modal with accept action
+
+
     });
+
+
+    // Modal buttons
+document.getElementById('closeCompanyModal').addEventListener('click', () => {
+    document.getElementById('companyModal').style.display = 'none';
+    selectedCompanyId = null;
+    document.getElementById('companyActionMessage').textContent = "";
+});
+
+
+document.getElementById('acceptCompanyBtn').addEventListener('click', () => {
+    const company = sampleData.companies.find(c => c.id === selectedCompanyId);
+    if (company) {
+        document.getElementById('companyActionMessage').textContent = `${company.name} has been accepted.`;
+        document.getElementById('companyActionMessage').style.color = 'green';
+    }
+});
+
+document.getElementById('rejectCompanyBtn').addEventListener('click', () => {
+    const company = sampleData.companies.find(c => c.id === selectedCompanyId);
+    if (company) {
+        document.getElementById('companyActionMessage').textContent = `${company.name} has been rejected.`;
+        document.getElementById('companyActionMessage').style.color = 'red';
+    }
+});
+
+
+
+
+
 });
