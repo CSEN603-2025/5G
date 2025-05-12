@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Company Registration | GUC Internship
+  </title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+  <link href="company.css" rel="stylesheet"/>
+ </head>
+ <body>
+  <!-- Colorful Header -->
+  <header class="header">
+   <div class="logo">
+    GUC INTERNSHIP SYSTEM
+   </div>
+  </header>
+  <!-- Persistent Search Bar (modified) -->
+  <div class="persistent-search" style="display: none;">
+   <div class="search-container">
+    <i class="fas fa-search">
+    </i>
+    <input id="globalSearch" placeholder="Search all job posts..." type="text"/>
+    <button class="search-btn" id="searchButton">
+     <i class="fas fa-search">
+     </i>
+     Search
+    </button>
+    <button class="clear-icon" id="clearSearch" title="Clear">
+     ✖
+    </button>
+    <div class="filter-container">
+     <select class="filter-select" id="jobFilter">
+      <option value="all">
+       All Jobs
+      </option>
+      <option value="active">
+       Active
+      </option>
+      <option value="paid">
+       Paid
+      </option>
+      <option value="unpaid">
+       Unpaid
+      </option>
+     </select>
+    </div>
+   </div>
+  </div>
+  <!-- Main Form -->
+  <!-- Registration Container (used to hide/show later) -->
+  <div id="registrationSection" style="display: block;">
+   <!-- Gradient Hero -->
+   <section class="hero-banner">
+    <h1>
+     REGISTER YOUR COMPANY
+    </h1>
+    <p>
+     Join our network and host talented interns!
+    </p>
+   </section>
+   <!-- Main Form -->
+   <section id="registrationSection" style="display: block;">
+             <div id="backToLoginBtn" style="margin-top: 2rem; display: flex; justify-content: flex-start; padding-left: 10rem;">
+        <button class="btn-secondary" onclick="goBackToLogin()" style="display: flex; align-items: center; gap: 6px;">
+            <i class="fas fa-arrow-left"></i> Back to Login
+         </button>
+       </div>
+    <main class="container">
+     <div class="card">
+      <h2>
+       <i class="fas fa-building">
+       </i>
+       Company Details
+      </h2>
+      <div id="registrationFormWrapper">
+       <form id="registrationForm">
+        <!-- Input Groups -->
+        <div class="input-group">
+         <label for="companyName">
+          Company Name
+         </label>
+         <input id="companyName" placeholder="e.g. NileTech Solutions" type="text"/>
+        </div>
+        <div class="input-group">
+         <label for="industry">
+          Industry
+         </label>
+         <input id="industry" placeholder="e.g. AI Development" type="text"/>
+        </div>
+        <div class="input-group">
+         <label for="companySize">
+          Company Size
+         </label>
+         <select id="companySize">
+          <option disabled="" selected="" value="">
+           Select size
+          </option>
+          <option value="small">
+           Small (≤ 50)
+          </option>
+          <option value="medium">
+           Medium (51-100)
+          </option>
+          <option value="large">
+           Large (101-500)
+          </option>
+          <option value="corporate">
+           Corporate (500+)
+          </option>
+         </select>
+        </div>
+        <div class="input-group">
+         <label for="email">
+          Official Email
+         </label>
+         <input id="email" placeholder="hr@company.com" type="email"/>
+        </div>
+        <!-- File Uploads -->
+        <div class="upload-box" id="logoUpload">
+         <i class="fas fa-camera-retro">
+         </i>
+         <p>
+          Upload Company Logo
+         </p>
+         <small>
+          PNG/JPG (max 5MB)
+         </small>
+         <input accept="image/*" id="companyLogo" type="file"/>
+        </div>
+        <div class="upload-box" id="docsUpload">
+         <i class="fas fa-file-contract">
+         </i>
+         <p>
+          Legal Documents
+         </p>
+         <small>
+          Tax docs, commercial register
+         </small>
+         <input id="legalDocs" multiple="" type="file"/>
+        </div>
+        <button class="btn-primary" type="submit">
+         <i class="fas fa-paper-plane">
+         </i>
+         Submit Registration
+        </button>
+       </form>
+      </div>
+     </div>
+    </main>
+   </section>
+   <!-- Success Message -->
+   <div class="success-message" id="registrationSuccessMessage" style="display: none;">
+    <i class="fas fa-check-circle">
+    </i>
+    <h3>
+     Successfully Registered!
+    </h3>
+   </div>
+  </div>
+  <!-- Add this BEFORE the footer -->
+  <section id="companyDashboard" style="display: none;">
+   <div style="margin-top: -2rem;">
+    <button class="btn-secondary mt-2" onclick="goBackToRegistration()">
+     <i class="fas fa-arrow-left">
+     </i>
+     Back to Registration
+    </button>
+   </div>
+   <!-- Job form goes here -->
+   <!-- Notification Center -->
+   <div class="card notification-center">
+    <h2>
+     <i class="fas fa-bell">
+     </i>
+     Notifications
+    </h2>
+    <div class="notification-list" id="notificationList">
+     <!-- Notifications will appear here -->
+    </div>
+   </div>
+   <!-- Job Post Management -->
+   <div class="card job-management">
+    <h2>
+     <i class="fas fa-briefcase">
+     </i>
+     Manage Job Posts
+    </h2>
+    <!-- Create Job Post Form -->
+    <div class="card" style="padding: 1.5rem 2rem;">
+     <h2 style="margin-bottom: 1.5rem;">
+      <i class="fas fa-briefcase">
+      </i>
+      Create a Job Post
+     </h2>
+     <form class="job-form" id="jobPostForm">
+      <!-- Job Title & Duration -->
+      <div class="form-row two-cols">
+       <div class="input-group">
+        <label for="jobTitle">
+         Job Title*
+        </label>
+        <input id="jobTitle" placeholder="e.g. Software Intern" required="" type="text"/>
+       </div>
+       <div class="input-group">
+        <label for="jobDuration">
+         Duration (months)*
+        </label>
+        <input id="jobDuration" max="12" min="1" placeholder="e.g. 3" required="" type="number"/>
+       </div>
+      </div>
+      <!-- Compensation & Salary -->
+      <div class="form-row two-cols align-center">
+       <div class="input-group">
+        <label>
+         Compensation Type*
+        </label>
+        <div class="radio-group horizontal-radio">
+         <label>
+          <input checked="" name="compensation" type="radio" value="paid"/>
+          Paid
+         </label>
+         <label>
+          <input name="compensation" type="radio" value="unpaid"/>
+          Unpaid
+         </label>
+        </div>
+       </div>
+       <div class="input-group" id="salaryField">
+        <label for="salary">
+         Expected Salary (EGP)*
+        </label>
+        <input id="salary" placeholder="e.g. 2000" required="" type="number"/>
+       </div>
+      </div>
+      <!-- Required Skills -->
+      <div class="form-row full-width">
+       <div class="input-group">
+        <label for="skills">
+         Required Skills*
+        </label>
+        <textarea id="skills" placeholder="List required skills (technical, soft, tools...)" required="" rows="3"></textarea>
+       </div>
+      </div>
+      <!-- Job Description -->
+      <div class="form-row full-width">
+       <div class="input-group">
+        <label for="description">
+         Job Description*
+        </label>
+        <textarea id="description" placeholder="Provide an overview of the internship duties and expectations." required="" rows="5"></textarea>
+       </div>
+      </div>
+      <!-- Submit -->
+      <div style="text-align: right; margin-top: 1rem;">
+       <button class="btn-primary" style="min-width: 200px;" type="submit">
+        <i class="fas fa-save">
+        </i>
+        Publish
+       </button>
+      </div>
+     </form>
+    </div>
+    <!-- Job Posts List -->
+    <div class="job-posts" id="jobPostsList">
+     <!-- Dynamic content will go here -->
+    </div>
+   </div>
+   <!-- Add this to your HTML file (job posts section) -->
+   <div class="job-management-actions">
+    <button class="btn-primary" id="viewInternshipsBtn">
+     <i class="fas fa-users">
+     </i>
+     Company Internships
+    </button>
+   </div>
+  </section>
+  <!-- Internships Page -->
+  <!-- Internships Page -->
+  <section id="internshipsPage" style="display: none;">
+   <!-- Back Button -->
+   <button class="btn-secondary mt-2" id="backToJobsBtn" style="margin-top: 1rem;">
+    <i class="fas fa-arrow-left">
+    </i>
+    Back to Job Posts
+   </button>
+   <div class="card">
+    <h2>
+     <i class="fas fa-users">
+     </i>
+     Company Internship Applications
+    </h2>
+    <!-- Filter and Count Controls -->
+    <div class="application-controls card">
+     <h3>
+      <i class="fas fa-filter">
+      </i>
+      Filter &amp; Stats
+     </h3>
+     <!-- Filter Dropdown -->
+     <label for="post-filter">
+      Filter by Internship Post:
+     </label>
+     <select id="post-filter" onchange="filterApplications()">
+      <option value="">
+       All
+      </option>
+      <option value="internship-1">
+       Internship 1
+      </option>
+      <option value="internship-2">
+       Internship 2
+      </option>
+     </select>
+     <!-- Application Count Button -->
+     <div class="view-count-section">
+      <button onclick="viewApplicationCount('internship-1')">
+       <i class="fas fa-eye">
+       </i>
+       View Internship Count
+      </button>
+      <p id="app-count-internship-1">
+      </p>
+     </div>
+    </div>
+    <section class="section">
+     <section class="section">
+      <div class="card">
+       <h2>
+        <i class="fas fa-list">
+        </i>
+        All Internship Applications
+       </h2>
+       <button class="btn-primary" onclick="showAllApplications()" style="width: fit-content;">
+        <i class="fas fa-eye">
+        </i>
+        Show Applications
+       </button>
+       <ul class="styled-app-list" id="application-list">
+       </ul>
+      </div>
+     </section>
+    </section>
+    <!-- Intern Filter/Search UI -->
+    <!-- Better structured Internship Filter/Search UI -->
+    <div class="internship-search-container">
+     <div class="search-group">
+      <input id="internshipSearch" placeholder="Search by name or job title" type="text"/>
+      <select id="internStatusFilter">
+       <option value="">
+        All Statuses
+       </option>
+       <option value="current intern">
+        Current Intern
+       </option>
+       <option value="internship complete">
+        Internship Complete
+       </option>
+      </select>
+     </div>
+     <button class="clear-icon" id="clearInternSearch" title="Clear">
+      ✖
+     </button>
+     <!-- <button class="btn-secondary clear-btn" onclick="clearInternshipFilters()">Clear</button> -->
+    </div>
+    <!-- Applications List -->
+    <div class="applications-list" id="applicationsList">
+     <!-- Dynamic content will appear here -->
+    </div>
+   </div>
+  </section>
+  <!-- Application Details Modal -->
+  <div class="modal" id="applicantModal" style="display: none;">
+   <div class="modal-content">
+    <span class="close" onclick="closeModal()">
+     ×
+    </span>
+    <h2>
+     Applicant Details
+    </h2>
+    <p id="modalName">
+    </p>
+    <p id="modalEmail">
+    </p>
+    <p id="modalSkills">
+    </p>
+    <p id="modalCoverLetter">
+    </p>
+    <label for="statusSelect">
+     Update Application Status:
+    </label>
+    <select id="statusSelect">
+     <option value="pending">
+      Pending
+     </option>
+     <option value="reviewed">
+      Reviewed
+     </option>
+     <option value="finalized">
+      Finalized
+     </option>
+     <option value="accepted">
+      Accepted
+     </option>
+     <option value="rejected">
+      Rejected
+     </option>
+     <option value="current intern">
+      Current Intern
+     </option>
+     <option value="internship complete">
+      Internship Complete
+     </option>
+    </select>
+    <button class="btn-primary" onclick="saveStatusChange()">
+     Save Status
+    </button>
+   </div>
+  </div>
+  <!-- Footer -->
+  <footer class="footer">
+   <p>
+    Our Internship System Works For You!
+   </p>
+  </footer>
+  <script src="company.js">
+  </script>
+  <!-- Evaluation Modal -->
+  <div class="modal" id="evaluationModal" style="display: none;">
+  <div class="modal-content">
+    <span class="close" onclick="closeEvaluationModal()">×</span>
+    <h2>Evaluation for Intern</h2>
+    <p id="evalInternName" style="font-weight: bold;"></p>
+
+    <div class="input-group" style="margin-top: 1rem;">
+      <textarea id="evaluationText" placeholder="Write your evaluation here..." rows="6" style="width: 100%;"></textarea>
+      <small id="evaluationError" class="error-message" style="display: none;">Please enter your evaluation.</small>
+    </div>
+
+    <div class="form-actions" style="margin-top: 20px; display: flex; justify-content: flex-end; gap: 1rem;">
+      <button id="saveEvaluationBtn" class="btn-primary equal-btn" onclick="saveEvaluation()">Save</button>
+      <button id="deleteEvaluationBtn" class="btn-secondary equal-btn" onclick="deleteEvaluation()">Delete</button>
+    </div>
+  </div>
+</div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast">
+  </div>
+  <!-- Custom Confirmation Modal -->
+  <!-- Styled Confirmation Modal -->
+  <div class="modal" id="confirmModal" style="display: none;">
+   <div class="modal-content">
+    <span class="close" onclick="closeConfirmModal()">
+     ×
+    </span>
+    <div style="text-align: center;">
+     <i class="fas fa-exclamation-triangle" style="font-size: 2.5rem; color: #e74c3c; margin-bottom: 1rem;">
+     </i>
+     <h2 style="color: var(--primary-dark); margin-bottom: 0.5rem;">
+      Are you sure?
+     </h2>
+     <p>
+      This job post will be permanently deleted.
+     </p>
+    </div>
+    <div class="confirm-actions">
+     <div class="btn-wrapper">
+      <button class="btn-secondary" onclick="closeConfirmModal()">
+       Cancel
+      </button>
+     </div>
+     <div class="btn-wrapper">
+      <button class="btn-danger" id="confirmDeleteBtn">
+       Yes, Delete
+      </button>
+     </div>
+    </div>
+   </div>
+  </div>
+  <div id="deleteConfirmPopup" class="modal" style="display: none;">
+  <div class="modal-content small-modal">
+    <h3>Confirm Deletion</h3>
+    <p>This evaluation will be permanently deleted. Are you sure?</p>
+    <div style="margin-top: 1.5rem; display: flex; justify-content: flex-end; gap: 1rem;">
+      <button class="btn-secondary equal-btn" onclick="closeDeleteConfirm()">Cancel</button>
+      <button class="btn-danger equal-btn" onclick="confirmDeleteEvaluation()">Delete</button>
+    </div>
+  </div>
+</div>
+ </body>
+</html>
