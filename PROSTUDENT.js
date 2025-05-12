@@ -769,6 +769,10 @@ document.getElementById('generateCertificateBtn').addEventListener('click', func
 
 // Download certificate button
 document.getElementById('downloadCertificateBtn').addEventListener('click', function() {
+    // Create a temporary link element
+    const link = document.createElement('a');
+    link.href = 'certificate.pdf'; // Path to your PDF certificate
+    link.download = 'GUC_Workshop_Certificate.pdf'; // Suggested filename
     // In a real system, this would trigger a download
     // For our prototype, we'll just show a message
     showNotification('Certificate download started!');
@@ -784,4 +788,18 @@ document.getElementById('downloadCertificateBtn').addEventListener('click', func
 workshops.forEach(workshop => {
     workshop.rated = false;
     workshop.certificateReceived = false;
-});
+
+    function downloadCertificate() {
+    const link = document.createElement('a');
+    link.href = 'certificate.pdf';
+    link.download = 'Workshop_Certificate.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    showNotification('Certificate download started!');
+}
+    
+    // Show confirmation
+    showNotification('Certificate download started!');
+}
+);

@@ -171,6 +171,32 @@ body {
     transform: translateY(-2px);
     box-shadow: 0 6px 16px rgba(5, 68, 94, 0.3);
 }
+/* Back to Login Button */
+.btn-login {
+    display: block;
+    background: #f8f9fa;
+    color: var(--primary-dark);
+    border: 2px solid var(--primary-medium);
+    padding: 12px 15px;
+    border-radius: 8px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: 20px;
+    transition: all 0.3s;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.btn-login:hover {
+    background: var(--primary-medium);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.btn-login i {
+    margin-right: 8px;
+}
 
 /* Success Message */
 .success-message {
@@ -723,18 +749,14 @@ body {
     font-family: inherit;
 }
 /* Add to PROSTUDENT.css */
-#certificateDisplay {
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
-    margin-top: 20px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-
 #certificateDisplay img {
-    max-height: 400px;
-    object-fit: contain;
-    margin-bottom: 15px;
+    width: 100%;
+    max-width: 600px;  /* Increased from default size */
+    height: auto;
+    border-radius: 8px;
+    margin: 15px 0;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 /* Workshop Viewer Styles */
