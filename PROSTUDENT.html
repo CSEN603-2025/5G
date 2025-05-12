@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GUC Internship System - PRO Student</title>
+    <link rel="stylesheet" href="PROSTUDENT.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">GUC Internship System</div>
+        <div class="time" id="currentTime"></div>
+    </header>
+
+    <div class="hero-banner">
+        <h1>PRO Student Dashboard</h1>
+        <p>Manage your internships and achievements</p>
+    </div>
+
+    <div class="card">
+        <h2><i class="fas fa-certificate"></i> PRO Badge Status</h2>
+        
+        <div class="badge-container" id="badgeContainer">
+            <!-- PRO Badge will be displayed here -->
+        </div>
+        <div id="postedScore" class="posted-score" style="display:none; margin-top: 1rem;"></div>
+
+        <div class="internship-progress">
+            <h3>Internship Progress</h3>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <p class="progress-text" id="progressText">0 of 3 months completed</p>
+        </div>
+
+        <button class="btn-primary" id="checkEligibilityBtn">
+            <i class="fas fa-check-circle"></i> Check PRO Badge Eligibility
+        </button>
+
+        <div class="success-message" id="successMessage">
+            <i class="fas fa-trophy"></i>
+            <h3>Congratulations!</h3>
+            <p>You've earned the PRO Student Badge for completing 3 months of internship!</p>
+            <p>This badge will appear on your profile and can be shared with potential employers.</p>
+        </div>
+    </div>
+
+    <!-- Profile Views Section -->
+    <div class="card" id="profileViewsSection" style="display: none;">
+        <h2><i class="fas fa-eye"></i> Profile Visibility</h2>
+        
+        <div class="views-stats">
+            <div class="stat-card">
+                <i class="fas fa-eye"></i>
+                <h3 id="totalViews">0</h3>
+                <p>Total Views</p>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-calendar-week"></i>
+                <h3 id="thisWeekViews">0</h3>
+                <p>This Week</p>
+            </div>
+        </div>
+
+        <div class="company-views-list" id="companyViewsList">
+            <!-- Companies will be listed here -->
+        </div>
+
+        <button class="btn-primary" id="toggleViewsBtn">
+            <i class="fas fa-eye-slash"></i> Hide Profile Views
+        </button>
+    </div>
+
+    <!-- Online Assessments Section -->
+    <div class="card" id="assessmentsSection" style="display: none;">
+        <h2><i class="fas fa-laptop-code"></i> Available Online Assessments</h2>
+        
+        <div class="assessments-list" id="assessmentsList">
+            <!-- Assessments will be listed here -->
+        </div>
+
+        <button class="btn-primary" id="backToDashboardBtn">
+            <i class="fas fa-arrow-left"></i> Back to PRO STUDENT Dashboard
+        </button>
+    </div>
+
+    <!-- Assessment Taking Section -->
+    <div class="card" id="takeAssessmentSection" style="display: none;">
+        <h2><i class="fas fa-edit"></i> <span id="assessmentTitle"></span></h2>
+        
+        <div class="timer" id="assessmentTimer">Time remaining: 60:00</div>
+        
+        <div class="assessment-content" id="assessmentContent">
+            <!-- Questions will be loaded here -->
+        </div>
+
+        <button class="btn-primary" id="submitAssessmentBtn">
+            <i class="fas fa-paper-plane"></i> Submit Assessment
+        </button>
+
+        <button class="btn-primary" id="backToAssessmentsBtn">
+            <i class="fas fa-arrow-left"></i> Back to Available Assessments
+        </button>
+    </div>
+
+    <!-- Assessment Results Section -->
+    <div class="card" id="assessmentResultsSection" style="display: none;">
+        <h2><i class="fas fa-chart-bar"></i> Assessment Results</h2>
+        
+        <div class="results-container" id="resultsContainer">
+            <!-- Results will be loaded here -->
+        </div>
+
+        <div class="share-options">
+            <button class="btn-primary" id="shareToProfileBtn">
+                <i class="fas fa-share"></i> Post Score to My Profile
+            </button>
+            <button class="btn-primary" id="backAfterResultsBtn">
+                <i class="fas fa-arrow-left"></i> Back to Available Assessments
+            </button>
+        </div>
+    </div>
+
+    <!-- Career Workshops Section -->
+    <div class="card" id="careerWorkshopsSection" style="display: none;">
+        <h2><i class="fas fa-briefcase"></i> Career Workshops</h2>
+
+        <!-- Notification UI -->
+        <div id="workshopNotification" class="success-message" style="display: none;"></div>
+
+        <!-- Workshops List -->
+        <div id="workshopList" class="assessments-list">
+            <!-- Workshops will be listed here -->
+        </div>
+
+        <!-- Back Button -->
+        <button class="btn-primary" id="backToDashboardFromWorkshopsBtn">
+            <i class="fas fa-arrow-left"></i> Back to PRO STUDENT Dashboard
+        </button>
+    </div>
+
+ <div id="workshopViewerSection" style="display: none;">
+    <div class="workshop-viewer-container">
+        <!-- Video Section -->
+        <div class="video-section">
+            <video id="workshopVideo" controls>
+                <source id="videoSource" src="" type="video/mp4" />
+                Your browser doesn't support HTML5 video.
+            </video>
+            <div id="liveControls" style="display: none;">
+                <div class="live-indicator">
+                    <span class="live-dot"></span> LIVE
+                </div>
+                <div id="attendeeCount">5 attendees</div>
+            </div>
+        </div>
+
+        <!-- Right Column Content -->
+        <div class="workshop-right-column">
+            <!-- Notes Section -->
+            <div class="notes-section">
+                <h3>📝 Workshop Notes</h3>
+                <textarea id="workshopNotes" placeholder="Type your notes here..."></textarea>
+            </div>
+
+            <!-- Chat Section (only visible for live workshops) -->
+            <div id="chatContainer" style="display: none;">
+                <h3>💬 Workshop Chat</h3>
+                <div id="chatMessages" class="chat-messages"></div>
+                <div class="chat-input">
+                    <input type="text" id="chatInput" placeholder="Type your message...">
+                    <button id="sendChatBtn"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+
+            <!-- Feedback Section -->
+            <div class="feedback-section">
+                <h3>Workshop Feedback</h3>
+                <button class="btn-primary" id="showRatingBtn">
+                    <i class="fas fa-star"></i> Rate Workshop
+                </button>
+                
+                <div id="ratingContainer" style="display: none;">
+                    <p>How would you rate this workshop?</p>
+                    <div class="star-rating">
+                        <i class="far fa-star" data-rating="1"></i>
+                        <i class="far fa-star" data-rating="2"></i>
+                        <i class="far fa-star" data-rating="3"></i>
+                        <i class="far fa-star" data-rating="4"></i>
+                        <i class="far fa-star" data-rating="5"></i>
+                    </div>
+                    <textarea id="feedbackText" placeholder="Your feedback (optional)"></textarea>
+                    <button class="btn-primary" id="submitRatingBtn">
+                        <i class="fas fa-check"></i> Submit Rating
+                    </button>
+                </div>
+                
+                <div id="certificateSection" style="display: none;">
+                    <button class="btn-primary" id="generateCertificateBtn">
+                        <i class="fas fa-certificate"></i> Receive Certificate
+                    </button>
+                    <div id="certificateSuccess" class="success-message" style="display: none;">
+                        <i class="fas fa-check-circle"></i>
+                        <p>Certificate generated successfully!</p>
+                    </div>
+                </div>
+                
+                <div id="certificateDisplay" style="display: none;">
+                    <img src="certificate.png" alt="Workshop Certificate">
+                    <button class="btn-primary" id="downloadCertificateBtn">
+                        <i class="fas fa-download"></i> Download Certificate
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="btn-primary" id="backToWorkshopsBtn">
+        <i class="fas fa-arrow-left"></i> Back to Workshops
+    </button>
+</div>
+    <!-- Notification Center -->
+    <div id="notificationCenter" class="notification" style="display: none;">
+        <i class="fas fa-bell"></i>
+        <span id="notificationMessage"></span>
+    </div>
+
+    
+    <footer class="footer">
+        <p>OUR INTERNSHIP SYSTEM FITS YOU BEST</p>
+    </footer>
+
+    <script src="PROSTUDENT.js"></script>
+</body>
+</html>
