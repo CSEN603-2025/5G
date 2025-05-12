@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // File Upload Interactions
   const logoUpload = document.getElementById('logoUpload');
   const docsUpload = document.getElementById('docsUpload');
-  
+
   logoUpload.addEventListener('click', () => document.getElementById('companyLogo').click());
   docsUpload.addEventListener('click', () => document.getElementById('legalDocs').click());
 
@@ -15,10 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
   let currentUserRole = "company"; // or "scad" — switch to "student" to simulate student view
   let jobToDeleteId = null;
 
-
   document.querySelector('.persistent-search').style.display = 'none';
-
-
 
   // ==================== PERSISTENT SEARCH FUNCTIONALITY ====================
  // ===== REPLACE YOUR EXISTING SEARCH FUNCTION WITH THIS =====
@@ -54,7 +51,6 @@ function setupGlobalSearch() {
   applyGlobalSearch('');
 });
 
-
   // Show/hide clear button
   searchInput.addEventListener('input', function() {
     clearBtn.style.display = this.value.length > 0 ? 'block' : 'none';
@@ -62,27 +58,25 @@ function setupGlobalSearch() {
 }
 // ===========================================================
 
-// Add this near your search functionality
 document.getElementById('jobFilter').addEventListener('change', function() {
   applyFilters();
   scrollToJobResults();
 });
 
-
 function applyFilters() {
   const filterValue = document.getElementById('jobFilter').value;
   const searchTerm = document.getElementById('globalSearch').value.toLowerCase();
-  
+
   let filteredJobs = currentCompany.jobs;
-  
+
   // Apply search filter first
   if (searchTerm) {
-    filteredJobs = filteredJobs.filter(job => 
+    filteredJobs = filteredJobs.filter(job =>
       job.title.toLowerCase().includes(searchTerm) ||
       job.description.toLowerCase().includes(searchTerm) ||
       job.skills.some(skill => skill.toLowerCase().includes(searchTerm)))
   }
-  
+
   // Apply job type filter
   switch(filterValue) {
     case 'active':
@@ -96,7 +90,7 @@ function applyFilters() {
       break;
     // 'all' shows everything
   }
-  
+
   renderJobPosts(filteredJobs);
 }
 
@@ -105,8 +99,6 @@ function searchJobs(searchTerm) {
   document.getElementById('jobFilter').value = 'all'; // Reset filter when searching
   applyFilters();
 }
-
-
 
   function applyGlobalSearch(searchTerm) {
     if (!currentCompany) return;
@@ -118,26 +110,26 @@ function searchJobs(searchTerm) {
     }
   }
 
-  function searchJobs(searchTerm) {
-    const filteredJobs = currentCompany.jobs.filter(job => 
-      searchTerm === '' || 
-      job.title.toLowerCase().includes(searchTerm) ||
-      job.description.toLowerCase().includes(searchTerm) ||
-      job.skills.some(skill => skill.toLowerCase().includes(searchTerm))
-    );
+function searchJobs(searchTerm) {
+  const filteredJobs = currentCompany.jobs.filter(job =>
+    searchTerm === '' ||
+    job.title.toLowerCase().includes(searchTerm) ||
+    job.description.toLowerCase().includes(searchTerm) ||
+    job.skills.some(skill => skill.toLowerCase().includes(searchTerm))
+  );
 
-     // Scroll to first match
-    if (matches && searchTerm && filteredJobs.length === 0) {
-      setTimeout(() => scrollToJob(job.id), 100);
-    }
-    
-    return matches;
-    renderJobPosts(filteredJobs);
-  }
+  renderJobPosts(filteredJobs);
+}
+
+function goBackToLogin() {
+  window.location.href = "login.html";
+}
+window.goBackToLogin = goBackToLogin; // ✅ expose globally for inline onclick
+
 
   function searchInternships(searchTerm) {
-    const filteredApplications = applications.filter(app => 
-      searchTerm === '' || 
+    const filteredApplications = applications.filter(app =>
+      searchTerm === '' ||
       app.jobTitle.toLowerCase().includes(searchTerm) ||
       app.applicantName.toLowerCase().includes(searchTerm) ||
       app.skills.some(skill => skill.toLowerCase().includes(searchTerm))
@@ -167,7 +159,7 @@ function searchJobs(searchTerm) {
   </div>
   <p><strong>Applicant:</strong> ${app.applicantName}</p>
   <p><strong>Date:</strong> ${app.applicationDate}</p>
-  
+
   <button class="btn-secondary" onclick="openModal(${app.id})">
     <i class="fas fa-user"></i> View Details
   </button>
@@ -182,7 +174,6 @@ function searchJobs(searchTerm) {
           <a href="mailto:${app.applicantEmail}" class="btn-secondary">
             <i class="fas fa-envelope"></i> Contact
           </a>
-
 
         </div>
       </div>
@@ -202,7 +193,7 @@ function searchJobs(searchTerm) {
   // Form Submission
   form.addEventListener('submit', function(e) {
     e.preventDefault();
-    
+
     // Create company profile
     currentCompany = {
       name: document.getElementById('companyName').value,
@@ -218,13 +209,10 @@ function searchJobs(searchTerm) {
     document.getElementById('registrationSection').style.display = 'none';
 window.scrollTo({ top: 0, behavior: 'smooth' });
 
-    
     // Simulate admin approval after 3 seconds
 approveCompany(); // call immediately
 
   });
-
-
 
   // Approval system
   function approveCompany() {
@@ -232,30 +220,28 @@ approveCompany(); // call immediately
     currentCompany.approvalDate = new Date().toLocaleDateString();
 
     document.querySelector('.persistent-search').style.display = 'block';
-    
+
     addNotification(
       "Your company registration was approved!",
       "accepted"
     );
-    
+
     // Enable job posting
     document.getElementById('jobPostForm').style.display = 'block';
     window.scrollTo({ top: 0, behavior: 'smooth' });
     document.querySelector('.persistent-search').style.display = 'block';
-
 
   }
 
   function scrollToJob(jobId) {
     const jobElement = document.querySelector(`.job-post[data-id="${jobId}"]`);
     if (jobElement) {
-      jobElement.scrollIntoView({ 
+      jobElement.scrollIntoView({
         behavior: 'smooth',
         block: 'center' // Scrolls to center of viewport
       });
-      
-      // Add temporary highlight
-      jobElement.style.boxShadow = '0 0 0 3px var(--primary-light)';
+
+            jobElement.style.boxShadow = '0 0 0 3px var(--primary-light)';
       setTimeout(() => {
         jobElement.style.boxShadow = 'none';
       }, 2000);
@@ -272,11 +258,24 @@ approveCompany(); // call immediately
   }
 }
 
+document.getElementById('clearSearchBtn')?.addEventListener('click', () => {
+  document.getElementById('searchInput').value = '';
+  renderJobPosts(currentCompany.jobs);
+});
+
+document.getElementById('searchInput')?.addEventListener('input', function () {
+  const term = this.value.toLowerCase();
+  const filtered = currentCompany.jobs.filter(job =>
+    job.title.toLowerCase().includes(term)
+  );
+
+  renderJobPosts(filtered); // show only matching jobs
+});
 
   // Rejection system
   function rejectCompany() {
     currentCompany.status = "rejected";
-    
+
     addNotification(
       "Your registration requires additional verification",
       "rejected"
@@ -296,7 +295,7 @@ approveCompany(); // call immediately
       </div>
     `;
     notificationList.prepend(notification);
-    
+
     // Simulate email
     console.log(`Email sent to ${currentCompany.email}: ${message}`);
   }
@@ -304,7 +303,7 @@ approveCompany(); // call immediately
   // Job Post Form Submission
   jobPostForm.addEventListener('submit', function(e) {
     e.preventDefault();
-    
+
     const jobData = {
       title: document.getElementById('jobTitle').value,
       duration: document.getElementById('jobDuration').value,
@@ -322,9 +321,8 @@ approveCompany(); // call immediately
       createJobPost(jobData);
       showToast("✅ Job post published successfully!");
 
-      
     }
-    
+
     this.reset();
     editingJobId = null;
   });
@@ -336,12 +334,12 @@ approveCompany(); // call immediately
       ...jobData,
       date: new Date().toLocaleDateString(),
       status: "active"
-      
+
     };
-    
+
     currentCompany.jobs.push(newJob);
     renderJobPosts(currentCompany.jobs);
-    
+
     addNotification(
       `New job posted: ${newJob.title}`,
       "accepted"
@@ -357,7 +355,7 @@ approveCompany(); // call immediately
         ...updatedData
       };
       renderJobPosts(currentCompany.jobs);
-      
+
       addNotification(
         `Job post updated: ${updatedData.title}`,
         "accepted"
@@ -375,7 +373,6 @@ approveCompany(); // call immediately
         renderJobPosts(currentCompany.jobs);
         showToast("🗑️ Job post deleted.");
 
-        
         addNotification(
           `Job post deleted: ${deletedTitle}`,
           "rejected"
@@ -388,14 +385,12 @@ function deleteJobPost(jobId) {
   document.getElementById('confirmModal').style.display = 'flex';
 }
 
-
 function closeConfirmModal() {
   document.getElementById('confirmModal').style.display = 'none';
   jobToDeleteId = null;
 }
 
 window.closeConfirmModal = closeConfirmModal;
-
 
 document.getElementById('confirmDeleteBtn').addEventListener('click', function () {
   if (jobToDeleteId !== null) {
@@ -411,15 +406,13 @@ document.getElementById('confirmDeleteBtn').addEventListener('click', function (
   }
 });
 
-    
-
   // Edit Job Post
   function editJobPost(jobId) {
     const job = currentCompany.jobs.find(job => job.id === jobId);
     if (!job) return;
 
     editingJobId = jobId;
-    
+
     // Fill form with job data
     document.getElementById('jobTitle').value = job.title;
     document.getElementById('jobDuration').value = job.duration;
@@ -427,57 +420,60 @@ document.getElementById('confirmDeleteBtn').addEventListener('click', function (
     document.getElementById('salary').value = job.salary;
     document.getElementById('skills').value = job.skills.join(', ');
     document.getElementById('description').value = job.description;
-    
+
     // Scroll to form
     document.getElementById('jobPostForm').scrollIntoView({ behavior: 'smooth' });
   }
 
   // Render Job Posts (modified to work with search)
-  function renderJobPosts(jobs = currentCompany.jobs) {
-    
-    const container = document.getElementById('jobPostsList');
-    if (!container) return;
+function renderJobPosts(jobs) {
+  const container = document.getElementById('jobPostsList');
+  container.innerHTML = '';
 
-    const searchTerm = document.getElementById('globalSearch')?.value.trim().toLowerCase() || '';
-    const filteredJobs = searchTerm 
-      ? jobs.filter(job => 
-          job.title.toLowerCase().includes(searchTerm) ||
-          job.description.toLowerCase().includes(searchTerm) ||
-          job.skills.some(skill => skill.toLowerCase().includes(searchTerm)))
-      : jobs;
+  jobs.forEach(job => {
+    const card = document.createElement('div');
+    card.className = 'job-post job-card';
+    card.dataset.id = job.id;
 
-    if (filteredJobs.length === 0) {
-container.innerHTML = `
-  <div class="no-results">
-    <i class="fas fa-search"></i>
-    <p>No matching job posts found</p>
-  </div>
-`;
-
-      return;
-    }
-
-    container.innerHTML = filteredJobs.map(job => `
-      <div class="job-post" data-id="${job.id}">
-        <div class="job-post-header">
-          <h3>${job.title}</h3>
-          <span class="badge">${job.status}</span>
-        </div>
-        <p><strong>Duration:</strong> ${job.duration} months</p>
-        <p><strong>Compensation:</strong> ${job.isPaid ? `Paid (${job.salary} EGP)` : 'Unpaid'}</p>
-        <p><strong>Skills Required:</strong> ${job.skills.join(', ')}</p>
-        <p>${job.description}</p>
-        <div class="job-post-actions">
-          <button class="btn-primary btn-edit" onclick="editJobPost(${job.id})">
-            <i class="fas fa-edit"></i> Edit
-          </button>
-          <button class="btn-primary btn-delete" onclick="deleteJobPost(${job.id})">
-            <i class="fas fa-trash"></i> Delete
-          </button>
-        </div>
+    card.innerHTML = `
+      <h3>${job.title}</h3>
+      <p>${job.description}</p>
+      <div class="job-post-actions" style="display: flex; gap: 10px; margin-top: 1rem;">
+        <button class="btn-edit" onclick="editJobPost(${job.id})">
+          <i class="fas fa-edit"></i> Edit
+        </button>
+        <button class="btn-delete" onclick="deleteJobPost(${job.id})">
+          <i class="fas fa-trash"></i> Delete
+        </button>
       </div>
-    `).join('');
-  }
+    `;
+
+    // Reapply consistent styles immediately to buttons in this card
+    const buttons = card.querySelectorAll('button');
+    buttons.forEach(btn => {
+      btn.classList.add('btn-primary');
+      btn.style.minWidth = '120px';
+      btn.style.padding = '10px 15px';
+      btn.style.borderRadius = '6px';
+    });
+
+    container.appendChild(card);
+  });
+
+  // Final global re-apply (fallback in case of async DOM delay)
+  setTimeout(() => {
+    document.querySelectorAll('.btn-edit, .btn-delete').forEach(btn => {
+      btn.classList.add('btn-primary');
+      btn.style.minWidth = '120px';
+      btn.style.padding = '10px 15px';
+      btn.style.borderRadius = '6px';
+    });
+  }, 0);
+
+   if (typeof FontAwesome !== 'undefined' && FontAwesome.dom && FontAwesome.dom.i2svg) {
+    FontAwesome.dom.i2svg();  // Re-render icons after DOM change
+  };
+}
 
   // Navigation between pages
 document.getElementById('viewInternshipsBtn').addEventListener('click', function () {
@@ -489,18 +485,10 @@ document.getElementById('viewInternshipsBtn').addEventListener('click', function
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-
-
-
 document.getElementById('backToJobsBtn').addEventListener('click', function () {
   showPage('companyDashboard');
   document.getElementById('registrationSection').style.display = 'none';
 });
-
-
-
-
-
 
 document.getElementById('viewInternshipsBtn').addEventListener('click', function() {
   document.getElementById('companyDashboard').style.display = 'none';
@@ -508,7 +496,6 @@ document.getElementById('viewInternshipsBtn').addEventListener('click', function
   document.getElementById('internshipsPage').style.display = 'block';
   loadInternshipApplications();
 });
-
 
   document.getElementById('backToJobsBtn').addEventListener('click', function() {
     document.getElementById('internshipsPage').style.display = 'none';
@@ -577,8 +564,6 @@ document.getElementById('viewInternshipsBtn').addEventListener('click', function
 let evaluations = {}; // appId -> evaluation text
 let selectedEvalAppId = null;
 
-
-
   // Load applications
   function loadInternshipApplications() {
     const container = document.getElementById('applicationsList');
@@ -592,7 +577,7 @@ let selectedEvalAppId = null;
         </div>
         <p><strong>Applicant:</strong> ${app.applicantName}</p>
         <p><strong>Applied on:</strong> ${app.applicationDate}</p>
-        
+
         <div class="application-details">
           <div>
             <h4>Skills</h4>
@@ -603,7 +588,7 @@ let selectedEvalAppId = null;
             <p>${app.coverLetter}</p>
           </div>
         </div>
-        
+
         <div class="application-actions">
         <button class="btn-primary" onclick="openModal(${app.id})">
   <i class="fas fa-user"></i> View Details
@@ -624,8 +609,6 @@ ${(app.status === 'internship complete' && currentUserRole !== 'student') ? `
   </button>
 ` : ''}
 
-
-
         </div>
       </div>
     `).join('');
@@ -637,11 +620,11 @@ ${(app.status === 'internship complete' && currentUserRole !== 'student') ? `
     if (appIndex !== -1) {
       applications[appIndex].status = newStatus;
       loadInternshipApplications();
-      
+
       // Simulate email notification
       const app = applications[appIndex];
       console.log(`Email sent to ${app.applicantEmail}: Your application for ${app.jobTitle} has been ${newStatus}`);
-      
+
       // System notification
       addNotification(
         `Updated status for ${app.applicantName}'s application to ${newStatus}`,
@@ -659,12 +642,10 @@ ${(app.status === 'internship complete' && currentUserRole !== 'student') ? `
   // Toggle salary field visibility
   document.querySelectorAll('input[name="compensation"]').forEach(radio => {
     radio.addEventListener('change', function() {
-      document.getElementById('salaryField').style.display = 
+      document.getElementById('salaryField').style.display =
         this.value === 'paid' ? 'block' : 'none';
     });
   });
-
-
 
 const applicationCounts = {
     'internship-1': 5,
@@ -674,7 +655,7 @@ const applicationCounts = {
 
 function viewApplicationCount(postId) {
     const count = applicationCounts[postId] || 0;
-    document.getElementById(`app-count-${postId}`).innerText = 
+    document.getElementById(`app-count-${postId}`).innerText =
         `Applications submitted: ${count}`;
 }
 
@@ -690,8 +671,6 @@ document.getElementById('toggleApplicantsBtn')?.addEventListener('click', functi
     ? '<i class="fas fa-users"></i> Show Applicants'
     : '<i class="fas fa-users"></i> Hide Applicants';
 });
-
-
 
 const allApplications = [
     { name: 'Alice', post: 'internship-1' },
@@ -712,8 +691,6 @@ function showAllApplications() {
 window.viewApplicationCount = viewApplicationCount;
 window.showAllApplications = showAllApplications;
 
-
-
 function filterApplications() {
     const selected = document.getElementById('post-filter').value;
     const list = document.getElementById('application-list');
@@ -726,7 +703,6 @@ function filterApplications() {
             list.appendChild(item);
         });
 }
-
 
 let selectedApplicationId = null;
 
@@ -744,13 +720,12 @@ let selectedApplicationId = null;
     document.getElementById('applicantModal').style.display = 'flex';
   }
 
-
   function openEvaluationModal(appId) {
     if (currentUserRole === 'student') return; // deny access for students
 
   const app = applications.find(a => a.id === appId);
   if (!app) return;
-  
+
   selectedEvalAppId = appId;
   document.getElementById('evalInternName').textContent = `Intern: ${app.applicantName}`;
   document.getElementById('evaluationText').value = evaluations[appId] || '';
@@ -763,44 +738,69 @@ function closeEvaluationModal() {
 }
 
 function saveEvaluation() {
-  const text = document.getElementById('evaluationText').value.trim();
-  if (!selectedEvalAppId || text === '') return;
+  const textArea = document.getElementById('evaluationText');
+  const errorMsg = document.getElementById('evaluationError');
+  const text = textArea.value.trim();
+
+  if (!selectedEvalAppId) return;
+
+  if (text === '') {
+    errorMsg.style.display = 'block';
+    textArea.style.borderColor = '#e53935';
+    return;
+  }
+
+  // Clear error
+  errorMsg.style.display = 'none';
+  textArea.style.borderColor = '';
 
   evaluations[selectedEvalAppId] = text;
   closeEvaluationModal();
   showToast("✅ Evaluation saved!");
 }
 
+
 function deleteEvaluation() {
-  if (selectedEvalAppId && evaluations[selectedEvalAppId]) {
-    delete evaluations[selectedEvalAppId];
-    closeEvaluationModal();
-    showToast("🗑️ Evaluation deleted.");
-  }
+  if (!selectedEvalAppId) return;
+  document.getElementById('deleteConfirmPopup').style.display = 'flex';
 }
+window.deleteEvaluation = deleteEvaluation;
+
+function closeDeleteConfirm() {
+  document.getElementById('deleteConfirmPopup').style.display = 'none';
+}
+window.closeDeleteConfirm = closeDeleteConfirm;
+
+function confirmDeleteEvaluation() {
+  if (!selectedEvalAppId) return;
+
+  delete evaluations[selectedEvalAppId];
+  closeDeleteConfirm();
+  closeEvaluationModal();
+  showToast("🗑️ Evaluation deleted.");
+}
+window.confirmDeleteEvaluation = confirmDeleteEvaluation;
+
 
 
 function showToast(message) {
   const toast = document.getElementById('toast');
   toast.textContent = message;
   toast.classList.add('show');
-  
+
   setTimeout(() => {
     toast.classList.remove('show');
   }, 3000); // Hide after 3 seconds
 }
-
 
 window.openEvaluationModal = openEvaluationModal;
 window.closeEvaluationModal = closeEvaluationModal;
 window.saveEvaluation = saveEvaluation;
 window.deleteEvaluation = deleteEvaluation;
 
-
 // Make globally available
 window.openEvaluationModal = openEvaluationModal;
 window.closeEvaluationModal = closeEvaluationModal;
-
 
   function closeModal() {
     document.getElementById('applicantModal').style.display = 'none';
@@ -825,9 +825,6 @@ window.closeEvaluationModal = closeEvaluationModal;
   window.closeModal = closeModal;
   window.saveStatusChange = saveStatusChange;
 
-
-
-
   // Internship filter/search
 document.getElementById('internshipSearch').addEventListener('input', applyInternFilters);
 document.getElementById('internStatusFilter').addEventListener('change', applyInternFilters);
@@ -851,14 +848,11 @@ function applyInternFilters() {
   renderFilteredApplications(filtered);
 }
 
-
-// Add event listener for the small "×" clear button
 document.getElementById('clearInternSearch').addEventListener('click', function () {
   document.getElementById('internshipSearch').value = '';
   document.getElementById('internStatusFilter').value = '';
   applyInternFilters();
 });
-
 
 function clearInternshipFilters() {
   document.getElementById('internshipSearch').value = '';
@@ -883,7 +877,6 @@ function clearInternshipFilters() {
   }
 });*/
 
-
 const backToRegistrationBtn = document.getElementById('backToRegistrationBtn');
 if (backToRegistrationBtn) {
   backToRegistrationBtn.addEventListener('click', function () {
@@ -903,9 +896,6 @@ if (backToRegistrationBtn) {
   });
 }
 
-
-
-
 /*document.getElementById('viewCurrentInternsBtn').addEventListener('click', function () {
   showPage('internshipsPage');
   document.getElementById('registrationSection').style.display = 'none';
@@ -919,7 +909,6 @@ if (backToRegistrationBtn) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, 100);
 });*/
-
 
 const viewCurrentInternsBtn = document.getElementById('viewCurrentInternsBtn');
 if (viewCurrentInternsBtn) {
@@ -937,9 +926,6 @@ if (viewCurrentInternsBtn) {
     }, 100);
   });
 }
-
-
-
 
 let pageHistory = [];
 
@@ -989,8 +975,6 @@ function showPage(sectionId) {
   }
 }
 
-
-
 function goBackToRegistration() {
   // Hide everything else
   document.getElementById('companyDashboard').style.display = 'none';
@@ -1013,25 +997,10 @@ function goBackToRegistration() {
 }
 window.goBackToRegistration = goBackToRegistration;
 
-
-
-
-
-
 function goBack() {
   const previous = pageHistory.pop();
   if (previous) showPage(previous);
 }
 window.goBack = goBack;
-
-
-
-
-
-
-
-
-
-
 
 });
