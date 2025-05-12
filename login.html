@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - SCAD Internship Portal</title>
+  <link rel="stylesheet" href="login.css" />
+  <script defer src="login.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+  <div class="login-wrapper">
+    <div class="login-card">
+      <div class="login-header">
+        <i class="fas fa-user-circle fa-3x"></i>
+        <h2>Welcome Back</h2>
+        <p>Please login to access your dashboard</p>
+      </div>
+      <form id="loginForm">
+        <div class="input-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" required />
+        </div>
+        <div class="input-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" required />
+        </div>
+        <button type="submit" class="btn-primary full-width">
+          <i class="fas fa-sign-in-alt"></i> Login
+        </button>
+        <div id="loginError" class="error-message" style="display: none;">
+          Invalid username or password.
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
