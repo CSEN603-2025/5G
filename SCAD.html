@@ -6,6 +6,7 @@
     <title>GUC Internship System - SCAD Office</title>
     <link rel="stylesheet" href="SCAD.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
     <header class="header">
@@ -48,8 +49,19 @@
                         <button type="submit" class="btn-primary">Save Dates</button>
                     </form>
                 </div>
+                <div class="card">
+                  <h2>Real-Time Report Statistics</h2>
+                  <ul id="statisticsList"></ul>
+                </div>
+                <div class="card">
+                   <h2>Generate Reports</h2>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                  <button class="btn-primary" id="generateReportBtn">
+                  <i class="fas fa-file-download"></i> Download Statistics PDF
+                  </button>
+                </div>
+                </div>
             </section>
-
             <!-- Internships Section -->
             <section id="internships-section" class="section">
                 <div class="section-header">
@@ -86,6 +98,11 @@
                         <table id="studentTable"></table>
                     </div>
                 </div>
+
+                <a href="appointmentscad.html" class="btn-secondary mt-2" style="margin-top: 0.5rem; display: inline-block; text-decoration: none; padding: 0.5rem 1rem; border-radius: 6px;">
+                   <i class="fas fa-arrow-left"></i>
+                      Go to appointnments
+                </a>
             </section>
 
             <!-- Reports Section -->
@@ -234,6 +251,22 @@
             <div class="modal-section">
                 <p><strong>Status:</strong> <span id="modalReportStatus"></span></p>
             </div>
+
+           <div class="modal-section">
+             <h3>Clarification Comment</h3>
+             <textarea id="clarificationComment" placeholder="Write your clarification..." style="width: 100%; resize: vertical; min-height: 100px;"></textarea>
+            <div class="form-actions" style="margin-top: 1rem; display: flex; gap: 10px;">
+            <button class="btn-primary" id="submitClarificationBtn">
+            <i class="fas fa-comment-dots"></i> Submit Clarification
+            </button>
+           <button class="btn-secondary" id="downloadSingleReportBtn">
+           <i class="fas fa-file-download"></i> Download Full Report as PDF
+         </button>
+         </div>
+</div>
+  <p id="clarificationStatus" style="margin-top: 10px;"></p>
+
+</div>
         </div>
     </div>
 

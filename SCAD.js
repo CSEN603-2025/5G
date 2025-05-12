@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', function() {
     // Time display
     function updateTime() {
@@ -463,6 +464,29 @@ reports: [
         `).join('');
     }
 
+ function renderStatistics() {
+  const stats = {
+    accepted: sampleData.reports.filter(r => r.status === "Accepted").length,
+    rejected: sampleData.reports.filter(r => r.status === "Rejected").length,
+    flagged: sampleData.reports.filter(r => r.status === "Flagged").length,
+    averageReviewTime: "3 days", // dummy
+    topCourses: ["BI", "EMS", "Management"], // dummy
+    topRatedCompanies: ["TechCorp", "Valu"], // dummy
+    topCompaniesByCount: ["TechCorp", "Vodafone"] // dummy
+  };
+
+  document.getElementById("statisticsList").innerHTML = `
+    <li><strong>Accepted Reports:</strong> ${stats.accepted}</li>
+    <li><strong>Rejected Reports:</strong> ${stats.rejected}</li>
+    <li><strong>Flagged Reports:</strong> ${stats.flagged}</li>
+    <li><strong>Average Review Time:</strong> ${stats.averageReviewTime}</li>
+    <li><strong>Top Courses Used:</strong> ${stats.topCourses.join(", ")}</li>
+    <li><strong>Top Rated Companies:</strong> ${stats.topRatedCompanies.join(", ")}</li>
+    <li><strong>Top Companies by Internship Count:</strong> ${stats.topCompaniesByCount.join(", ")}</li>
+  `;
+}
+
+
     // Event Listeners for Filters
     document.getElementById('internshipSearch').addEventListener('input', renderInternships);
     document.getElementById('internshipFilter').addEventListener('change', renderInternships);
@@ -525,6 +549,42 @@ reports: [
                 document.getElementById('modalReportConclusion').textContent = report.conclusion;
                 document.getElementById('modalReportStatus').textContent = report.status;
                 showModal('reportModal');
+
+                document.getElementById('downloadSingleReportBtn').onclick = function () {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    let y = 20;
+
+    doc.setFontSize(16);
+    doc.text(`${report.student}'s Internship Report`, 15, y);
+    y += 10;
+
+    const content = [
+      `Company: ${report.company}`,
+      `Major: ${report.major}`,
+      `Status: ${report.status}`,
+      `--- Introduction ---`,
+      report.introduction,
+      `--- Tasks ---`,
+      ...report.tasks,
+      `--- Skills Learned ---`,
+      ...report.skills,
+      `--- Conclusion ---`,
+      report.conclusion
+    ];
+
+    const lines = doc.splitTextToSize(content.join("\n"), 180);
+    lines.forEach(line => {
+      if (y > 280) {
+        doc.addPage();
+        y = 20;
+      }
+      doc.text(line, 15, y);
+      y += 7;
+    });
+
+    doc.save(`${report.student.replace(/\s+/g, "_")}_Internship_Report.pdf`);
+  };
             }
         }
         
@@ -635,4 +695,37 @@ reports: [
     renderReports();
     renderWorkshops();
     renderCompanies();
+
+document.getElementById('submitClarificationBtn').addEventListener('click', function() {
+const comment = document.getElementById('clarificationComment').value.trim();
+  if (comment) {
+    document.getElementById('clarificationStatus').textContent = "Clarification submitted successfully.";
+    document.getElementById('clarificationStatus').style.color = "green";
+    document.getElementById('clarificationComment').value = "";
+  } else {
+    document.getElementById('clarificationStatus').textContent = "Please enter a clarification.";
+    document.getElementById('clarificationStatus').style.color = "red";
+  }
+});
+
+
+
+document.getElementById('generateReportBtn').addEventListener('click', async function () {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+
+  const statsText = document.getElementById("statisticsList").innerText;
+  const formattedText = `GUC Internship Report Statistics\n\n${statsText}`;
+
+  const lines = doc.splitTextToSize(formattedText, 180); // Wrap text
+  doc.text(lines, 15, 20);
+
+  doc.save("Internship_Report_Summary.pdf");
+});
+
+
+
+renderStatistics();
+
+
 });

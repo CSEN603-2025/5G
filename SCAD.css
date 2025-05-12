@@ -352,3 +352,18 @@ th {
         padding: 20px;
     }
 }
+
+#clarificationComment {
+  width: 100%;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+#clarificationComment:focus {
+  min-height: 150px;
+  outline: none;
+  border-color: var(--primary-medium);
+}
