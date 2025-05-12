@@ -24,6 +24,8 @@
                 <li data-section="students"><i class="fas fa-users"></i> Students</li>
                 <li data-section="reports"><i class="fas fa-file-alt"></i> Reports</li>
                 <li data-section="workshops"><i class="fas fa-chalkboard-teacher"></i> Workshops</li>
+                <li data-section="companies"><i class="fas fa-building"></i> Companies</li>
+
             </ul>
         </nav>
 
@@ -156,9 +158,58 @@
                     <div class="workshop-list" id="workshopList"></div>
                 </div>
             </section>
+
+
+
+<!-- Companies Section -->
+<section id="companies-section" class="section">
+    <h1><i class="fas fa-building"></i> Applying Companies</h1>
+    <div class="card">
+        <div class="form-row">
+            <div class="input-group">
+                <label for="companySearch">Search by Company Name</label>
+                <input type="text" id="companySearch" placeholder="e.g. TechCorp">
+            </div>
+            <div class="input-group">
+                <label for="industryFilter">Filter by Industry</label>
+                <select id="industryFilter">
+                    <option value="">All Industries</option>
+                    <option>Technology</option>
+                    <option>Finance</option>
+                    <option>Healthcare</option>
+                    <option>Supply Chain</option>
+                </select>
+            </div>
+        </div>
+        <div id="companyList" class="card-list"></div>
+    </div>
+</section>
+
+
         </div>
     </main>
 
     <script src="SCAD.js"></script>
+
+
+<!-- Company Details Modal -->
+<div id="companyModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close-button" id="closeCompanyModal">&times;</span>
+        <h2 id="modalCompanyName"></h2>
+        <p><strong>Industry:</strong> <span id="modalCompanyIndustry"></span></p>
+        <p><strong>Description:</strong></p>
+        <p id="modalCompanyDescription"></p>
+<div id="companyActionMessage" style="margin: 15px 0; font-weight: bold;"></div>
+<div class="form-actions">
+    <button class="btn-primary" id="acceptCompanyBtn">Accept</button>
+    <button class="btn-secondary" id="rejectCompanyBtn">Reject</button>
+</div>
+
+    </div>
+</div>
+
+
+
 </body>
 </html>
