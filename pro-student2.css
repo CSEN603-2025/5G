@@ -1181,4 +1181,11 @@ body {
     gap: 0.25rem;
   }
 }
-
+/* Footer */
+.footer {
+  background: var(--primary-dark);
+  color: white;
+  text-align: center;
+  padding: 1.5rem;
+  margin-top: 3rem;
+}

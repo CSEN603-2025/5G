@@ -11,9 +11,16 @@
   <!-- Header -->
   <header class="header">
     <div class="logo">GUC INTERNSHIP SYSTEM</div>
-    <div class="student-type">Student/PRO Student</div>
+    
+
+    
   </header>
-  <!-- Navigation -->
+  <!-- Hero Banner -->
+  <section class="hero-banner">
+    <h1>STUDENT/PRO STUDENT PORTAL</h1>
+    <p>Manage your profile and discover internship opportunities</p>
+  </section>
+
   <nav class="main-nav">
     <ul>
       <li><a href="#profile-section"><i class="fas fa-user-graduate"></i> My Profile</a></li>
@@ -21,13 +28,25 @@
       <li><a href="#applications-section"><i class="fas fa-file-alt"></i> My Applications</a></li>
     </ul>
   </nav>
-
-  <!-- Hero Banner -->
-  <section class="hero-banner">
-    <h1>STUDENT/PRO STUDENT PORTAL</h1>
-    <p>Manage your profile and discover internship opportunities</p>
-  </section>
-
+<!-- Place this right after the <nav> element -->
+<div style="position: absolute; right: 20px; top: 80px; display: flex; flex-direction: column; gap: 8px; width: 180px;">
+  <a href="login.html" class="btn-secondary" style="display: flex; align-items: center; justify-content: flex-start; gap: 0.5rem; text-decoration: none; padding: 0.4rem 0.8rem; border-radius: 6px; margin: 0; font-size: 0.85rem;">
+    <i class="fas fa-arrow-left"></i>
+    Back to Login
+  </a>
+  <a href="evaluation-report.html" class="btn-secondary" style="display: flex; align-items: center; justify-content: flex-start; gap: 0.5rem; text-decoration: none; padding: 0.4rem 0.8rem; border-radius: 6px; margin: 0; font-size: 0.85rem;">
+    <i class="fas fa-arrow-right"></i>
+    Evaluation & Reports
+  </a>
+  <a href="appointmentstudent.html" class="btn-secondary" style="display: flex; align-items: center; justify-content: flex-start; gap: 0.5rem; text-decoration: none; padding: 0.4rem 0.8rem; border-radius: 6px; margin: 0; font-size: 0.85rem;">
+    <i class="fas fa-arrow-right"></i>
+    Appointments
+  </a>
+  <a href="student.html" class="btn-secondary" style="display: flex; align-items: center; justify-content: flex-start; gap: 0.5rem; text-decoration: none; padding: 0.4rem 0.8rem; border-radius: 6px; margin: 0; font-size: 0.85rem;">
+    <i class="fas fa-arrow-right"></i>
+    Current & Past Internships
+  </a>
+</div>
 
   <!-- Majors Selection Section -->
 <section class="card majors-card">
@@ -63,7 +82,7 @@
   <!-- Main Content -->
   <main class="container">
     <!-- Profile Section -->
-    <div class="card profile-card">
+    <div class="card profile-card" id="profile-section"> 
       <h2><i class="fas fa-user-graduate"></i> My Profile</h2>
       
       <!-- View Mode -->
@@ -218,7 +237,7 @@
   </div>
 </section>
     <!-- Internships Section -->
-<section class="card internships-card">
+<section class="card internships-card" id="internship-section">
   <h2><i class="fas fa-briefcase"></i> Internship Opportunities</h2>
   <p class="subtitle">Find and apply for internships matching your profile</p>
   
@@ -299,14 +318,7 @@
   </div>
 </section>
 
-<!-- Navigation to Evaluations & Reports -->
-<div class="page-navigation">
-  <a href="evaluation-report.html" class="nav-arrow">
-    <i class="fas fa-arrow-right"></i>
-    <span>Go to Evaluations & Reports</span>
-  </a>
-</div>
-  </main>
+
 
   <!-- Footer -->
   <footer class="footer">

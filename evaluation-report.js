@@ -303,7 +303,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     document.getElementById('reportModal').style.display = 'block';
   }
-  
 
   // Setup event listeners
   function setupEventListeners() {
