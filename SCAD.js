@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setInterval(updateTime, 1000);
     updateTime();
 
-  const navItems = document.querySelectorAll('.sidebar li');
+    const navItems = document.querySelectorAll('.sidebar li');
     const sections = document.querySelectorAll('.section');
     
     // Function to show a section and update history
@@ -81,19 +81,119 @@ document.addEventListener('DOMContentLoaded', function() {
             { id: 5, company: "Valu", title: "Frontend Intern", duration: "5 months", paid: true, industry: "Technology" }
         ],
         students: [
-            { id: 1, name: "Ahmed Mohamed", status: "Applied", major: "BI", gpa: 2.4 },
-            { id: 2, name: "Mariam Ali", status: "Internship Started", major: "EMS", gpa: 1.7 },
-            { id: 3, name: "Youssef Ibrahim", status: "Pending", major: "Management", gpa: 3.2 },
-            { id: 4, name: "Lina Samir", status: "Pending", major: "Applied Arts", gpa: 1.9 },
-            { id: 5, name: "Ahmed Ali", status: "Internship Started", major: "MET", gpa: 1.5 }
+    { id: 1, name: "Ahmed Mohamed", status: "Applied", major: "BI", gpa: 2.4 },
+    { id: 2, name: "Mariam Ali", status: "Internship Started", major: "EMS", gpa: 1.7 },
+    { id: 3, name: "Youssef Ibrahim", status: "Pending", major: "Management", gpa: 3.2 },
+    { id: 4, name: "Lina Samir", status: "Pending", major: "Applied Arts", gpa: 1.9 },
+    { id: 5, name: "Ahmed Ali", status: "Internship Started", major: "MET", gpa: 1.5 }
+],
+reports: [
+    { 
+        id: 1, 
+        student: "Ahmed Mohamed", 
+        company: "TechCorp", 
+        status: "Pending", 
+        major: "BI",
+        introduction: "During my internship at TechCorp, I worked as a software developer intern in the web development team. This report summarizes my experience and learnings.",
+        tasks: [
+            "Developed responsive web components using React",
+            "Fixed bugs in the company's main product",
+            "Participated in daily stand-up meetings",
+            "Wrote unit tests for new features"
         ],
-        reports: [
-            { id: 1, student: "Ahmed Mohamed", company: "TechCorp", status: "Pending", major: "CS" },
-            { id: 2, student: "Mariam Ali", company: "FinanceBank", status: "Accepted", major: "EM" },
-            { id: 3, student: "Youssef Ibrahim", company: "TechCorp", status: "Pending", major: "CS" },
-            { id: 4, student: "Lina Samir", company: "HealthPlus", status: "Flagged", major: "EM" },
-            { id: 5, student: "Ahmed Ali", company: "Valu", status: "Accepted", major: "MET" }
+        skills: [
+            "Improved my React and Redux skills",
+            "Learned about CI/CD pipelines",
+            "Gained experience with Agile methodologies",
+            "Improved my problem-solving skills"
         ],
+        conclusion: "This internship was a valuable experience that helped me bridge the gap between academic knowledge and real-world software development. I'm grateful for the opportunity and look forward to applying what I've learned in future projects."
+    },
+    { 
+        id: 2, 
+        student: "Mariam Ali", 
+        company: "FinanceBank", 
+        status: "Accepted", 
+        major: "EMS",
+        introduction: "My internship at FinanceBank provided me with hands-on experience in financial analysis and market research.",
+        tasks: [
+            "Analyzed financial statements of client companies",
+            "Prepared reports on market trends",
+            "Assisted in creating financial models",
+            "Participated in client meetings"
+        ],
+        skills: [
+            "Improved Excel and financial modeling skills",
+            "Learned about financial regulations",
+            "Gained presentation skills",
+            "Improved analytical thinking"
+        ],
+        conclusion: "The internship exceeded my expectations and confirmed my interest in pursuing a career in finance. I particularly enjoyed the analytical aspects of the work."
+    },
+    { 
+        id: 3, 
+        student: "Youssef Ibrahim", 
+        company: "Valu", 
+        status: "Pending", 
+        major: "Management",
+        introduction: "My internship at Valu as a management trainee gave me exposure to various business operations and strategic decision-making processes.",
+        tasks: [
+            "Assisted in market research for new product lines",
+            "Participated in cross-departmental coordination meetings",
+            "Analyzed customer feedback data",
+            "Helped prepare business presentations for stakeholders"
+        ],
+        skills: [
+            "Developed strategic planning abilities",
+            "Improved data analysis skills using business intelligence tools",
+            "Enhanced team coordination and leadership skills",
+            "Gained understanding of product lifecycle management"
+        ],
+        conclusion: "This internship provided a comprehensive view of business management in a tech startup environment. The hands-on experience with strategic decision-making was particularly valuable for my career development."
+    },
+    { 
+        id: 4, 
+        student: "Lina Samir", 
+        company: "HealthPlus", 
+        status: "Pending", 
+        major: "Applied Arts",
+        introduction: "Interning at HealthPlus allowed me to apply my design skills in a healthcare setting, creating visual materials for patient education and marketing.",
+        tasks: [
+            "Designed patient education brochures and infographics",
+            "Created social media graphics for health awareness campaigns",
+            "Assisted in redesigning the company website",
+            "Developed branding materials for new services"
+        ],
+        skills: [
+            "Improved proficiency in Adobe Creative Suite",
+            "Learned about healthcare communication standards",
+            "Gained experience in user-centered design",
+            "Developed skills in creating accessible visual materials"
+        ],
+        conclusion: "Combining my artistic skills with healthcare communication was a rewarding challenge. I gained valuable experience in creating designs that serve both aesthetic and functional purposes in a medical context."
+    },
+    { 
+        id: 5, 
+        student: "Ahmed Ali", 
+        company: "Vodafone", 
+        status: "Accepted", 
+        major: "MET",
+        introduction: "My engineering internship at Vodafone focused on network infrastructure and telecommunications systems maintenance.",
+        tasks: [
+            "Assisted in routine maintenance of network equipment",
+            "Participated in site surveys for network expansion",
+            "Helped troubleshoot connectivity issues",
+            "Documented technical procedures and processes"
+        ],
+        skills: [
+            "Gained hands-on experience with telecom hardware",
+            "Learned network monitoring and diagnostic techniques",
+            "Improved technical documentation skills",
+            "Developed problem-solving approaches for network issues"
+        ],
+        conclusion: "This internship provided practical experience that complemented my theoretical knowledge. Working with experienced engineers gave me insights into real-world challenges in telecommunications infrastructure."
+    }
+],
         workshops: [
             {
                 id: 1,
@@ -113,15 +213,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 speakerBio: "Dr. Sarah Johnson, Professor of Computer Science",
                 agenda: "1. Coding best practices\n2. Debugging techniques\n3. Code optimization"
             }
+        ],
+        companies: [
+            { id: 1, name: "TechCorp", industry: "Technology", description: "Leading tech solutions provider" },
+            { id: 2, name: "FinanceBank", industry: "Finance", description: "Global banking services" },
+            { id: 3, name: "HealthPlus", industry: "Healthcare", description: "Advanced medical research" },
+            { id: 4, name: "LogiTrack", industry: "Supply Chain", description: "Innovative logistics platform" }
         ]
     };
 
-
     let selectedCompanyId = null;
-
+    let selectedWorkshopId = null;
 
     // Workshop Management
-    let editingWorkshopId = null;
     const workshopFormContainer = document.getElementById('workshopFormContainer');
     const workshopForm = document.getElementById('workshopForm');
     const addWorkshopBtn = document.getElementById('addWorkshopBtn');
@@ -153,43 +257,33 @@ document.addEventListener('DOMContentLoaded', function() {
         `).join('');
     }
 
+    function renderCompanies() {
+        const search = document.getElementById('companySearch').value.toLowerCase();
+        const industry = document.getElementById('industryFilter').value;
 
-    // Dummy companies data
-sampleData.companies = [
-    { id: 1, name: "TechCorp", industry: "Technology", description: "Leading tech solutions provider" },
-    { id: 2, name: "FinanceBank", industry: "Finance", description: "Global banking services" },
-    { id: 3, name: "HealthPlus", industry: "Healthcare", description: "Advanced medical research" },
-    { id: 4, name: "LogiTrack", industry: "Supply Chain", description: "Innovative logistics platform" }
-];
+        const filtered = sampleData.companies.filter(c => {
+            const matchesSearch = c.name.toLowerCase().includes(search);
+            const matchesIndustry = industry === "" || c.industry === industry;
+            return matchesSearch && matchesIndustry;
+        });
 
-function renderCompanies() {
-    const search = document.getElementById('companySearch').value.toLowerCase();
-    const industry = document.getElementById('industryFilter').value;
+        const container = document.getElementById('companyList');
+        if (filtered.length === 0) {
+            container.innerHTML = '<div class="no-results"><i class="fas fa-search"></i> No companies found</div>';
+            return;
+        }
 
-    const filtered = sampleData.companies.filter(c => {
-        const matchesSearch = c.name.toLowerCase().includes(search);
-        const matchesIndustry = industry === "" || c.industry === industry;
-        return matchesSearch && matchesIndustry;
-    });
-
-    const container = document.getElementById('companyList');
-    if (filtered.length === 0) {
-        container.innerHTML = '<div class="no-results"><i class="fas fa-search"></i> No companies found</div>';
-        return;
+        container.innerHTML = filtered.map(c => `
+            <div class="internship-card">
+                <h3>${c.name}</h3>
+                <p><strong>Industry:</strong> ${c.industry}</p>
+                <p>${c.description}</p>
+                <button class="btn-secondary view-company" data-id="${c.id}">View Details</button>
+                <button class="btn-primary accept-company" data-id="${c.id}">Accept</button>
+                <button class="btn-secondary reject-company" data-id="${c.id}">Reject</button>
+            </div>
+        `).join('');
     }
-
-    container.innerHTML = filtered.map(c => `
-        <div class="internship-card">
-            <h3>${c.name}</h3>
-            <p><strong>Industry:</strong> ${c.industry}</p>
-            <p>${c.description}</p>
-            <button class="btn-secondary view-company" data-id="${c.id}">View Details</button>
-            <button class="btn-primary accept-company" data-id="${c.id}">Accept</button>
-            <button class="btn-secondary reject-company" data-id="${c.id}">Reject</button>
-        </div>
-    `).join('');
-}
-
 
     function formatWorkshopDate(dateTimeString) {
         const date = new Date(dateTimeString);
@@ -210,7 +304,7 @@ function renderCompanies() {
 
     function showWorkshopForm(workshop = null) {
         if (workshop) {
-            editingWorkshopId = workshop.id;
+            selectedWorkshopId = workshop.id;
             document.getElementById('workshopName').value = workshop.name;
             document.getElementById('workshopDescription').value = workshop.description;
             document.getElementById('startDateTime').value = workshop.startDateTime;
@@ -218,7 +312,7 @@ function renderCompanies() {
             document.getElementById('speakerBio').value = workshop.speakerBio;
             document.getElementById('workshopAgenda').value = workshop.agenda;
         } else {
-            editingWorkshopId = null;
+            selectedWorkshopId = null;
             workshopForm.reset();
         }
         workshopFormContainer.style.display = 'block';
@@ -226,12 +320,12 @@ function renderCompanies() {
 
     function hideWorkshopForm() {
         workshopFormContainer.style.display = 'none';
-        editingWorkshopId = null;
+        selectedWorkshopId = null;
     }
 
     function saveWorkshop(formData) {
         const workshop = {
-            id: editingWorkshopId || sampleData.workshops.length + 1,
+            id: selectedWorkshopId || sampleData.workshops.length + 1,
             name: formData.get('workshopName'),
             description: formData.get('workshopDescription'),
             startDateTime: formData.get('startDateTime'),
@@ -240,9 +334,9 @@ function renderCompanies() {
             agenda: formData.get('workshopAgenda')
         };
 
-        if (editingWorkshopId) {
+        if (selectedWorkshopId) {
             // Update existing workshop
-            const index = sampleData.workshops.findIndex(w => w.id === editingWorkshopId);
+            const index = sampleData.workshops.findIndex(w => w.id === selectedWorkshopId);
             if (index !== -1) {
                 sampleData.workshops[index] = workshop;
             }
@@ -272,22 +366,7 @@ function renderCompanies() {
         saveWorkshop(formData);
     });
 
-    document.addEventListener('click', function(e) {
-        if (e.target.matches('.edit-workshop, .edit-workshop *')) {
-            const btn = e.target.closest('.edit-workshop');
-            const id = parseInt(btn.getAttribute('data-id'));
-            const workshop = sampleData.workshops.find(w => w.id === id);
-            if (workshop) showWorkshopForm(workshop);
-        }
-
-        if (e.target.matches('.delete-workshop, .delete-workshop *')) {
-            const btn = e.target.closest('.delete-workshop');
-            const id = parseInt(btn.getAttribute('data-id'));
-            deleteWorkshop(id);
-        }
-    });
-
-    // Other render functions (internships, students, reports) remain the same as before
+    // Other render functions
     function renderInternships() {
         const searchTerm = document.getElementById('internshipSearch').value.toLowerCase();
         const industryFilter = document.getElementById('internshipFilter').value;
@@ -391,134 +470,169 @@ function renderCompanies() {
     document.getElementById('reportFilter').addEventListener('change', renderReports);
     document.getElementById('companySearch').addEventListener('input', renderCompanies);
     document.getElementById('industryFilter').addEventListener('change', renderCompanies);
-    renderCompanies();
 
+    // Modal functions
+    function showModal(modalId) {
+        document.getElementById(modalId).style.display = 'flex';
+    }
 
-    // Initial render
-    renderInternships();
-    renderStudents();
-    renderReports();
-    renderWorkshops();
+    function hideModal(modalId) {
+        document.getElementById(modalId).style.display = 'none';
+    }
 
     // Event delegation for dynamic buttons
     document.addEventListener('click', function(e) {
-        // Handle view details button
+        // Handle internship view details button
         if (e.target.matches('.view-details, .view-details *')) {
             const btn = e.target.closest('.view-details');
-            const id = btn.getAttribute('data-id');
-            const internship = sampleData.internships.find(i => i.id == id);
+            const id = parseInt(btn.getAttribute('data-id'));
+            const internship = sampleData.internships.find(i => i.id === id);
             if (internship) {
-                alert(`Internship Details\n\nTitle: ${internship.title}\nCompany: ${internship.company}\nDuration: ${internship.duration}\nIndustry: ${internship.industry}\nStatus: ${internship.paid ? 'Paid' : 'Unpaid'}`);
+                document.getElementById('modalInternshipTitle').textContent = internship.title;
+                document.getElementById('modalInternshipCompany').textContent = internship.company;
+                document.getElementById('modalInternshipDuration').textContent = internship.duration;
+                document.getElementById('modalInternshipIndustry').textContent = internship.industry;
+                document.getElementById('modalInternshipStatus').textContent = internship.paid ? 'Paid' : 'Unpaid';
+                showModal('internshipModal');
             }
         }
         
-        // Handle view profile button
+        // Handle student view profile button
         if (e.target.matches('.view-profile, .view-profile *')) {
             const btn = e.target.closest('.view-profile');
-            const id = btn.getAttribute('data-id');
-            const student = sampleData.students.find(s => s.id == id);
+            const id = parseInt(btn.getAttribute('data-id'));
+            const student = sampleData.students.find(s => s.id === id);
             if (student) {
-                alert(`Student Profile\n\nName: ${student.name}\nMajor: ${student.major}\nGPA: ${student.gpa}\nStatus: ${student.status}`);
+                document.getElementById('modalStudentName').textContent = student.name;
+                document.getElementById('modalStudentId').textContent = student.id;
+                document.getElementById('modalStudentMajor').textContent = student.major;
+                document.getElementById('modalStudentGpa').textContent = student.gpa;
+                document.getElementById('modalStudentStatus').textContent = student.status;
+                showModal('studentModal');
             }
         }
         
         // Handle view report button
         if (e.target.matches('.view-report, .view-report *')) {
             const btn = e.target.closest('.view-report');
-            const id = btn.getAttribute('data-id');
-            const report = sampleData.reports.find(r => r.id == id);
+            const id = parseInt(btn.getAttribute('data-id'));
+            const report = sampleData.reports.find(r => r.id === id);
             if (report) {
-                alert(`Evaluation Report\n\nStudent: ${report.student}\nCompany: ${report.company}\nMajor: ${report.major}\nStatus: ${report.status}`);
+                document.getElementById('modalReportTitle').textContent = `${report.student}'s Report for ${report.company}`;
+                document.getElementById('modalReportIntroduction').textContent = report.introduction;
+                document.getElementById('modalReportTasks').innerHTML = report.tasks.map(task => `<li>${task}</li>`).join('');
+                document.getElementById('modalReportSkills').innerHTML = report.skills.map(skill => `<li>${skill}</li>`).join('');
+                document.getElementById('modalReportConclusion').textContent = report.conclusion;
+                document.getElementById('modalReportStatus').textContent = report.status;
+                showModal('reportModal');
             }
         }
         
         // Handle logout button
         if (e.target.id === 'logoutBtn' || e.target.closest('#logoutBtn')) {
-            if (confirm('Are you sure you want to logout?')) {
-                // Redirect to login page or perform logout
-                window.location.href = 'login.html';
+            showModal('logoutModal');
+        }
+
+        // Handle view company
+        if (e.target.matches('.view-company, .view-company *')) {
+            const id = parseInt(e.target.closest('.view-company').dataset.id);
+            const company = sampleData.companies.find(c => c.id === id);
+            if (company) {
+                selectedCompanyId = company.id;
+                document.getElementById('modalCompanyName').textContent = company.name;
+                document.getElementById('modalCompanyIndustry').textContent = company.industry;
+                document.getElementById('modalCompanyDescription').textContent = company.description;
+                document.getElementById('companyActionMessage').textContent = "";
+                showModal('companyModal');
             }
         }
 
-// View Company
-if (e.target.matches('.view-company, .view-company *')) {
-    const id = parseInt(e.target.closest('.view-company').dataset.id);
-    const company = sampleData.companies.find(c => c.id === id);
-    if (company) {
-        selectedCompanyId = company.id;
-        document.getElementById('modalCompanyName').textContent = company.name;
-        document.getElementById('modalCompanyIndustry').textContent = company.industry;
-        document.getElementById('modalCompanyDescription').textContent = company.description;
-        document.getElementById('companyModal').style.display = 'flex';
-        document.getElementById('companyActionMessage').textContent = "";
-    }
-}
+        // Handle accept company from card
+        if (e.target.matches('.accept-company, .accept-company *')) {
+            const id = parseInt(e.target.closest('.accept-company').dataset.id);
+            const company = sampleData.companies.find(c => c.id === id);
+            if (company) {
+                selectedCompanyId = company.id;
+                document.getElementById('modalCompanyName').textContent = company.name;
+                document.getElementById('modalCompanyIndustry').textContent = company.industry;
+                document.getElementById('modalCompanyDescription').textContent = company.description;
+                document.getElementById('companyActionMessage').textContent = `${company.name} has been accepted.`;
+                document.getElementById('companyActionMessage').style.color = 'green';
+                showModal('companyModal');
+            }
+        }
 
+        // Handle reject company from card
+        if (e.target.matches('.reject-company, .reject-company *')) {
+            const id = parseInt(e.target.closest('.reject-company').dataset.id);
+            const company = sampleData.companies.find(c => c.id === id);
+            if (company) {
+                selectedCompanyId = company.id;
+                document.getElementById('modalCompanyName').textContent = company.name;
+                document.getElementById('modalCompanyIndustry').textContent = company.industry;
+                document.getElementById('modalCompanyDescription').textContent = company.description;
+                document.getElementById('companyActionMessage').textContent = `${company.name} has been rejected.`;
+                document.getElementById('companyActionMessage').style.color = 'red';
+                showModal('companyModal');
+            }
+        }
 
+        // Handle edit workshop
+        if (e.target.matches('.edit-workshop, .edit-workshop *')) {
+            const btn = e.target.closest('.edit-workshop');
+            const id = parseInt(btn.getAttribute('data-id'));
+            const workshop = sampleData.workshops.find(w => w.id === id);
+            if (workshop) showWorkshopForm(workshop);
+        }
 
-// Accept Company
-// Accept Company from card
-if (e.target.matches('.accept-company, .accept-company *')) {
-    const id = parseInt(e.target.closest('.accept-company').dataset.id);
-    const company = sampleData.companies.find(c => c.id === id);
-    if (company) {
-        selectedCompanyId = company.id;
-        document.getElementById('modalCompanyName').textContent = company.name;
-        document.getElementById('modalCompanyIndustry').textContent = company.industry;
-        document.getElementById('modalCompanyDescription').textContent = company.description;
-        document.getElementById('companyActionMessage').textContent = `${company.name} has been accepted.`;
-        document.getElementById('companyActionMessage').style.color = 'green';
-        document.getElementById('companyModal').style.display = 'flex';
-    }
-}
-
-
-// Reject Company
-// Accept Company from card
-if (e.target.matches('.accept-company, .accept-company *')) {
-    const id = parseInt(e.target.closest('.accept-company').dataset.id);
-    const company = sampleData.companies.find(c => c.id === id);
-    if (company) {
-        selectedCompanyId = company.id;
-        document.getElementById('modalCompanyName').textContent = company.name;
-        document.getElementById('modalCompanyIndustry').textContent = company.industry;
-        document.getElementById('modalCompanyDescription').textContent = company.description;
-        document.getElementById('companyActionMessage').textContent = "";
-        document.getElementById('companyModal').style.display = 'flex';
-
-    }  
-  }  // Pre-fill modal with accept action
-
-
+        // Handle delete workshop
+        if (e.target.matches('.delete-workshop, .delete-workshop *')) {
+            const btn = e.target.closest('.delete-workshop');
+            const id = parseInt(btn.getAttribute('data-id'));
+            document.getElementById('deleteModalMessage').textContent = `Are you sure you want to delete this workshop?`;
+            showModal('deleteModal');
+            document.getElementById('confirmDeleteBtn').onclick = function() {
+                deleteWorkshop(id);
+                hideModal('deleteModal');
+            };
+        }
     });
 
+    // Modal close buttons
+    document.getElementById('closeInternshipModal').addEventListener('click', () => hideModal('internshipModal'));
+    document.getElementById('closeStudentModal').addEventListener('click', () => hideModal('studentModal'));
+    document.getElementById('closeReportModal').addEventListener('click', () => hideModal('reportModal'));
+    document.getElementById('closeCompanyModal').addEventListener('click', () => hideModal('companyModal'));
+    document.getElementById('cancelLogoutBtn').addEventListener('click', () => hideModal('logoutModal'));
+    document.getElementById('cancelDeleteBtn').addEventListener('click', () => hideModal('deleteModal'));
 
-    // Modal buttons
-document.getElementById('closeCompanyModal').addEventListener('click', () => {
-    document.getElementById('companyModal').style.display = 'none';
-    selectedCompanyId = null;
-    document.getElementById('companyActionMessage').textContent = "";
-});
+    // Confirm logout
+    document.getElementById('confirmLogoutBtn').addEventListener('click', () => {
+        // Redirect to login page or perform logout
+        window.location.href = 'login.html';
+    });
 
+    // Company modal actions
+    document.getElementById('acceptCompanyBtn').addEventListener('click', () => {
+        const company = sampleData.companies.find(c => c.id === selectedCompanyId);
+        if (company) {
+            document.getElementById('companyActionMessage').textContent = `${company.name} has been accepted.`;
+            document.getElementById('companyActionMessage').style.color = 'green';
+        }
+    });
 
-document.getElementById('acceptCompanyBtn').addEventListener('click', () => {
-    const company = sampleData.companies.find(c => c.id === selectedCompanyId);
-    if (company) {
-        document.getElementById('companyActionMessage').textContent = `${company.name} has been accepted.`;
-        document.getElementById('companyActionMessage').style.color = 'green';
-    }
-});
+    document.getElementById('rejectCompanyBtn').addEventListener('click', () => {
+        const company = sampleData.companies.find(c => c.id === selectedCompanyId);
+        if (company) {
+            document.getElementById('companyActionMessage').textContent = `${company.name} has been rejected.`;
+            document.getElementById('companyActionMessage').style.color = 'red';
+        }
+    });
 
-document.getElementById('rejectCompanyBtn').addEventListener('click', () => {
-    const company = sampleData.companies.find(c => c.id === selectedCompanyId);
-    if (company) {
-        document.getElementById('companyActionMessage').textContent = `${company.name} has been rejected.`;
-        document.getElementById('companyActionMessage').style.color = 'red';
-    }
-});
-
-
-
-
-
+    // Initial render
+    renderInternships();
+    renderStudents();
+    renderReports();
+    renderWorkshops();
+    renderCompanies();
 });
