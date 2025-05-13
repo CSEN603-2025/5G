@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
   backButton.addEventListener('click', function() {
     window.location.href = 'welcome.html';
   });
-  
+
   // Password toggle functionality
   togglePassword.addEventListener('click', function() {
     const isPasswordVisible = passwordInput.type === 'text';
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
   loginForm.addEventListener('submit', function(e) {
     e.preventDefault();
     
-    const username = document.getElementById('username').value.trim();
+    const username = document.getElementById('username').value.trim().toLowerCase();
     const password = document.getElementById('password').value;
     
     // Simple validation
@@ -46,15 +46,46 @@ document.addEventListener('DOMContentLoaded', function() {
     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Authenticating';
     submitBtn.disabled = true;
     
-    // Simulate API call (replace with actual authentication)
+    // Dummy credentials with roles
+    const users = {
+      "scadadmin": { password: "scad123", role: "scad" },
+      "companyuser": { password: "comp456", role: "company" },
+      "student1": { password: "stud123", role: "student1" },
+      "student2": { password: "stud456", role: "student2" },
+      "facultym": { password: "facultym123", role: "facultym" }
+    };
+
+    const user = users[username];
+
+    // Simulate API call delay
     setTimeout(() => {
-      // For demo purposes - always succeeds
-      window.location.href = 'dashboard.html';
+      if (user && user.password === password) {
+        switch (user.role) {
+          case "scad":
+            window.location.href = "SCAD.html";
+            break;
+          case "company":
+            window.location.href = "company.html";
+            break;
+          case "student1":
+            window.location.href = "pro-student2.html";
+            break;
+          case "student2":
+            window.location.href = "PROSTUDENT.html";
+            break;
+          case "facultym":
+            window.location.href = "FacultyMember.html";
+            break;
+          default:
+            alert('Invalid credentials');
+        }
+      } else {
+        alert('Invalid username or password');
+      }
       
-      // In real implementation:
-      // submitBtn.innerHTML = originalBtnText;
-      // submitBtn.disabled = false;
-      // if (error) show error message
-    }, 1500);
+      // Reset button state
+      submitBtn.innerHTML = originalBtnText;
+      submitBtn.disabled = false;
+    }, 1000);
   });
 });
