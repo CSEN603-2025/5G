@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', function() {
     // Time display
     function updateTime() {
@@ -82,119 +81,119 @@ document.addEventListener('DOMContentLoaded', function() {
             { id: 5, company: "Valu", title: "Frontend Intern", duration: "5 months", paid: true, industry: "Technology" }
         ],
         students: [
-    { id: 1, name: "Ahmed Mohamed", status: "Applied", major: "BI", gpa: 2.4 },
-    { id: 2, name: "Mariam Ali", status: "Internship Started", major: "EMS", gpa: 1.7 },
-    { id: 3, name: "Youssef Ibrahim", status: "Pending", major: "Management", gpa: 3.2 },
-    { id: 4, name: "Lina Samir", status: "Pending", major: "Applied Arts", gpa: 1.9 },
-    { id: 5, name: "Ahmed Ali", status: "Internship Started", major: "MET", gpa: 1.5 }
-],
-reports: [
-    { 
-        id: 1, 
-        student: "Ahmed Mohamed", 
-        company: "TechCorp", 
-        status: "Pending", 
-        major: "BI",
-        introduction: "During my internship at TechCorp, I worked as a software developer intern in the web development team. This report summarizes my experience and learnings.",
-        tasks: [
-            "Developed responsive web components using React",
-            "Fixed bugs in the company's main product",
-            "Participated in daily stand-up meetings",
-            "Wrote unit tests for new features"
+            { id: 1, name: "Ahmed Mohamed", status: "Applied", major: "BI", gpa: 2.4 },
+            { id: 2, name: "Mariam Ali", status: "Internship Started", major: "EMS", gpa: 1.7 },
+            { id: 3, name: "Youssef Ibrahim", status: "Pending", major: "Management", gpa: 3.2 },
+            { id: 4, name: "Lina Samir", status: "Pending", major: "Applied Arts", gpa: 1.9 },
+            { id: 5, name: "Ahmed Ali", status: "Internship Started", major: "MET", gpa: 1.5 }
         ],
-        skills: [
-            "Improved my React and Redux skills",
-            "Learned about CI/CD pipelines",
-            "Gained experience with Agile methodologies",
-            "Improved my problem-solving skills"
+        reports: [
+            { 
+                id: 1, 
+                student: "Ahmed Mohamed", 
+                company: "TechCorp", 
+                status: "Pending", 
+                major: "BI",
+                introduction: "During my internship at TechCorp, I worked as a software developer intern in the web development team. This report summarizes my experience and learnings.",
+                tasks: [
+                    "Developed responsive web components using React",
+                    "Fixed bugs in the company's main product",
+                    "Participated in daily stand-up meetings",
+                    "Wrote unit tests for new features"
+                ],
+                skills: [
+                    "Improved my React and Redux skills",
+                    "Learned about CI/CD pipelines",
+                    "Gained experience with Agile methodologies",
+                    "Improved my problem-solving skills"
+                ],
+                conclusion: "This internship was a valuable experience that helped me bridge the gap between academic knowledge and real-world software development. I'm grateful for the opportunity and look forward to applying what I've learned in future projects."
+            },
+            { 
+                id: 2, 
+                student: "Mariam Ali", 
+                company: "FinanceBank", 
+                status: "Accepted", 
+                major: "EMS",
+                introduction: "My internship at FinanceBank provided me with hands-on experience in financial analysis and market research.",
+                tasks: [
+                    "Analyzed financial statements of client companies",
+                    "Prepared reports on market trends",
+                    "Assisted in creating financial models",
+                    "Participated in client meetings"
+                ],
+                skills: [
+                    "Improved Excel and financial modeling skills",
+                    "Learned about financial regulations",
+                    "Gained presentation skills",
+                    "Improved analytical thinking"
+                ],
+                conclusion: "The internship exceeded my expectations and confirmed my interest in pursuing a career in finance. I particularly enjoyed the analytical aspects of the work."
+            },
+            { 
+                id: 3, 
+                student: "Youssef Ibrahim", 
+                company: "Valu", 
+                status: "Pending", 
+                major: "Management",
+                introduction: "My internship at Valu as a management trainee gave me exposure to various business operations and strategic decision-making processes.",
+                tasks: [
+                    "Assisted in market research for new product lines",
+                    "Participated in cross-departmental coordination meetings",
+                    "Analyzed customer feedback data",
+                    "Helped prepare business presentations for stakeholders"
+                ],
+                skills: [
+                    "Developed strategic planning abilities",
+                    "Improved data analysis skills using business intelligence tools",
+                    "Enhanced team coordination and leadership skills",
+                    "Gained understanding of product lifecycle management"
+                ],
+                conclusion: "This internship provided a comprehensive view of business management in a tech startup environment. The hands-on experience with strategic decision-making was particularly valuable for my career development."
+            },
+            { 
+                id: 4, 
+                student: "Lina Samir", 
+                company: "HealthPlus", 
+                status: "Pending", 
+                major: "Applied Arts",
+                introduction: "Interning at HealthPlus allowed me to apply my design skills in a healthcare setting, creating visual materials for patient education and marketing.",
+                tasks: [
+                    "Designed patient education brochures and infographics",
+                    "Created social media graphics for health awareness campaigns",
+                    "Assisted in redesigning the company website",
+                    "Developed branding materials for new services"
+                ],
+                skills: [
+                    "Improved proficiency in Adobe Creative Suite",
+                    "Learned about healthcare communication standards",
+                    "Gained experience in user-centered design",
+                    "Developed skills in creating accessible visual materials"
+                ],
+                conclusion: "Combining my artistic skills with healthcare communication was a rewarding challenge. I gained valuable experience in creating designs that serve both aesthetic and functional purposes in a medical context."
+            },
+            { 
+                id: 5, 
+                student: "Ahmed Ali", 
+                company: "Vodafone", 
+                status: "Accepted", 
+                major: "MET",
+                introduction: "My engineering internship at Vodafone focused on network infrastructure and telecommunications systems maintenance.",
+                tasks: [
+                    "Assisted in routine maintenance of network equipment",
+                    "Participated in site surveys for network expansion",
+                    "Helped troubleshoot connectivity issues",
+                    "Documented technical procedures and processes"
+                ],
+                skills: [
+                    "Gained hands-on experience with telecom hardware",
+                    "Learned network monitoring and diagnostic techniques",
+                    "Improved technical documentation skills",
+                    "Developed problem-solving approaches for network issues"
+                ],
+                conclusion: "This internship provided practical experience that complemented my theoretical knowledge. Working with experienced engineers gave me insights into real-world challenges in telecommunications infrastructure."
+            }
         ],
-        conclusion: "This internship was a valuable experience that helped me bridge the gap between academic knowledge and real-world software development. I'm grateful for the opportunity and look forward to applying what I've learned in future projects."
-    },
-    { 
-        id: 2, 
-        student: "Mariam Ali", 
-        company: "FinanceBank", 
-        status: "Accepted", 
-        major: "EMS",
-        introduction: "My internship at FinanceBank provided me with hands-on experience in financial analysis and market research.",
-        tasks: [
-            "Analyzed financial statements of client companies",
-            "Prepared reports on market trends",
-            "Assisted in creating financial models",
-            "Participated in client meetings"
-        ],
-        skills: [
-            "Improved Excel and financial modeling skills",
-            "Learned about financial regulations",
-            "Gained presentation skills",
-            "Improved analytical thinking"
-        ],
-        conclusion: "The internship exceeded my expectations and confirmed my interest in pursuing a career in finance. I particularly enjoyed the analytical aspects of the work."
-    },
-    { 
-        id: 3, 
-        student: "Youssef Ibrahim", 
-        company: "Valu", 
-        status: "Pending", 
-        major: "Management",
-        introduction: "My internship at Valu as a management trainee gave me exposure to various business operations and strategic decision-making processes.",
-        tasks: [
-            "Assisted in market research for new product lines",
-            "Participated in cross-departmental coordination meetings",
-            "Analyzed customer feedback data",
-            "Helped prepare business presentations for stakeholders"
-        ],
-        skills: [
-            "Developed strategic planning abilities",
-            "Improved data analysis skills using business intelligence tools",
-            "Enhanced team coordination and leadership skills",
-            "Gained understanding of product lifecycle management"
-        ],
-        conclusion: "This internship provided a comprehensive view of business management in a tech startup environment. The hands-on experience with strategic decision-making was particularly valuable for my career development."
-    },
-    { 
-        id: 4, 
-        student: "Lina Samir", 
-        company: "HealthPlus", 
-        status: "Pending", 
-        major: "Applied Arts",
-        introduction: "Interning at HealthPlus allowed me to apply my design skills in a healthcare setting, creating visual materials for patient education and marketing.",
-        tasks: [
-            "Designed patient education brochures and infographics",
-            "Created social media graphics for health awareness campaigns",
-            "Assisted in redesigning the company website",
-            "Developed branding materials for new services"
-        ],
-        skills: [
-            "Improved proficiency in Adobe Creative Suite",
-            "Learned about healthcare communication standards",
-            "Gained experience in user-centered design",
-            "Developed skills in creating accessible visual materials"
-        ],
-        conclusion: "Combining my artistic skills with healthcare communication was a rewarding challenge. I gained valuable experience in creating designs that serve both aesthetic and functional purposes in a medical context."
-    },
-    { 
-        id: 5, 
-        student: "Ahmed Ali", 
-        company: "Vodafone", 
-        status: "Accepted", 
-        major: "MET",
-        introduction: "My engineering internship at Vodafone focused on network infrastructure and telecommunications systems maintenance.",
-        tasks: [
-            "Assisted in routine maintenance of network equipment",
-            "Participated in site surveys for network expansion",
-            "Helped troubleshoot connectivity issues",
-            "Documented technical procedures and processes"
-        ],
-        skills: [
-            "Gained hands-on experience with telecom hardware",
-            "Learned network monitoring and diagnostic techniques",
-            "Improved technical documentation skills",
-            "Developed problem-solving approaches for network issues"
-        ],
-        conclusion: "This internship provided practical experience that complemented my theoretical knowledge. Working with experienced engineers gave me insights into real-world challenges in telecommunications infrastructure."
-    }
-],
         workshops: [
             {
                 id: 1,
@@ -454,38 +453,72 @@ reports: [
         
         container.innerHTML = filtered.map(report => `
             <div class="report-card status-${report.status.toLowerCase()}">
-                <h3>${report.student}'s Report for ${report.company}</h3>
-                <p><strong>Major:</strong> ${report.major}</p>
-                <p>Status: <span class="status-badge">${report.status}</span></p>
-                <button class="btn-primary view-report" data-id="${report.id}">
-                    View Full Report
-                </button>
+                <div class="report-card-header">
+                    <h3>${report.student}'s Report for ${report.company}</h3>
+                    <span class="status-badge">${report.status}</span>
+                </div>
+                <div class="report-card-body">
+                    <p><strong>Major:</strong> ${report.major}</p>
+                    <p class="report-summary">${report.introduction.substring(0, 100)}...</p>
+                </div>
+                <div class="report-card-actions">
+                    <button class="btn-primary view-report" data-id="${report.id}">
+                        View Full Report
+                    </button>
+                </div>
             </div>
         `).join('');
     }
 
- function renderStatistics() {
-  const stats = {
-    accepted: sampleData.reports.filter(r => r.status === "Accepted").length,
-    rejected: sampleData.reports.filter(r => r.status === "Rejected").length,
-    flagged: sampleData.reports.filter(r => r.status === "Flagged").length,
-    averageReviewTime: "3 days", // dummy
-    topCourses: ["BI", "EMS", "Management"], // dummy
-    topRatedCompanies: ["TechCorp", "Valu"], // dummy
-    topCompaniesByCount: ["TechCorp", "Vodafone"] // dummy
-  };
+    function renderStatistics() {
+        const stats = {
+            accepted: sampleData.reports.filter(r => r.status === "Accepted").length,
+            pending: sampleData.reports.filter(r => r.status === "Pending").length,
+            flagged: sampleData.reports.filter(r => r.status === "Flagged").length,
+            total: sampleData.reports.length,
+            averageReviewTime: "3 days",
+            topCourses: ["BI", "EMS", "Management"],
+            topRatedCompanies: ["TechCorp", "Valu"],
+            topCompaniesByCount: ["TechCorp", "Vodafone"]
+        };
 
-  document.getElementById("statisticsList").innerHTML = `
-    <li><strong>Accepted Reports:</strong> ${stats.accepted}</li>
-    <li><strong>Rejected Reports:</strong> ${stats.rejected}</li>
-    <li><strong>Flagged Reports:</strong> ${stats.flagged}</li>
-    <li><strong>Average Review Time:</strong> ${stats.averageReviewTime}</li>
-    <li><strong>Top Courses Used:</strong> ${stats.topCourses.join(", ")}</li>
-    <li><strong>Top Rated Companies:</strong> ${stats.topRatedCompanies.join(", ")}</li>
-    <li><strong>Top Companies by Internship Count:</strong> ${stats.topCompaniesByCount.join(", ")}</li>
-  `;
-}
-
+        document.getElementById("statisticsList").innerHTML = `
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value">${stats.accepted}</div>
+                    <div class="stat-label">Accepted Reports</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">${stats.pending}</div>
+                    <div class="stat-label">Pending Reports</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">${stats.flagged}</div>
+                    <div class="stat-label">Flagged Reports</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">${stats.total}</div>
+                    <div class="stat-label">Total Reports</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">${stats.averageReviewTime}</div>
+                    <div class="stat-label">Avg. Review Time</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">${stats.topCourses.join(", ")}</div>
+                    <div class="stat-label">Top Courses</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">${stats.topRatedCompanies.join(", ")}</div>
+                    <div class="stat-label">Top Rated Companies</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">${stats.topCompaniesByCount.join(", ")}</div>
+                    <div class="stat-label">Top Companies by Count</div>
+                </div>
+            </div>
+        `;
+    }
 
     // Event Listeners for Filters
     document.getElementById('internshipSearch').addEventListener('input', renderInternships);
@@ -551,40 +584,40 @@ reports: [
                 showModal('reportModal');
 
                 document.getElementById('downloadSingleReportBtn').onclick = function () {
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
-    let y = 20;
+                    const { jsPDF } = window.jspdf;
+                    const doc = new jsPDF();
+                    let y = 20;
 
-    doc.setFontSize(16);
-    doc.text(`${report.student}'s Internship Report`, 15, y);
-    y += 10;
+                    doc.setFontSize(16);
+                    doc.text(`${report.student}'s Internship Report`, 15, y);
+                    y += 10;
 
-    const content = [
-      `Company: ${report.company}`,
-      `Major: ${report.major}`,
-      `Status: ${report.status}`,
-      `--- Introduction ---`,
-      report.introduction,
-      `--- Tasks ---`,
-      ...report.tasks,
-      `--- Skills Learned ---`,
-      ...report.skills,
-      `--- Conclusion ---`,
-      report.conclusion
-    ];
+                    const content = [
+                        `Company: ${report.company}`,
+                        `Major: ${report.major}`,
+                        `Status: ${report.status}`,
+                        `--- Introduction ---`,
+                        report.introduction,
+                        `--- Tasks ---`,
+                        ...report.tasks,
+                        `--- Skills Learned ---`,
+                        ...report.skills,
+                        `--- Conclusion ---`,
+                        report.conclusion
+                    ];
 
-    const lines = doc.splitTextToSize(content.join("\n"), 180);
-    lines.forEach(line => {
-      if (y > 280) {
-        doc.addPage();
-        y = 20;
-      }
-      doc.text(line, 15, y);
-      y += 7;
-    });
+                    const lines = doc.splitTextToSize(content.join("\n"), 180);
+                    lines.forEach(line => {
+                        if (y > 280) {
+                            doc.addPage();
+                            y = 20;
+                        }
+                        doc.text(line, 15, y);
+                        y += 7;
+                    });
 
-    doc.save(`${report.student.replace(/\s+/g, "_")}_Internship_Report.pdf`);
-  };
+                    doc.save(`${report.student.replace(/\s+/g, "_")}_Internship_Report.pdf`);
+                };
             }
         }
         
@@ -696,36 +729,30 @@ reports: [
     renderWorkshops();
     renderCompanies();
 
-document.getElementById('submitClarificationBtn').addEventListener('click', function() {
-const comment = document.getElementById('clarificationComment').value.trim();
-  if (comment) {
-    document.getElementById('clarificationStatus').textContent = "Clarification submitted successfully.";
-    document.getElementById('clarificationStatus').style.color = "green";
-    document.getElementById('clarificationComment').value = "";
-  } else {
-    document.getElementById('clarificationStatus').textContent = "Please enter a clarification.";
-    document.getElementById('clarificationStatus').style.color = "red";
-  }
-});
+    document.getElementById('submitClarificationBtn').addEventListener('click', function() {
+        const comment = document.getElementById('clarificationComment').value.trim();
+        if (comment) {
+            document.getElementById('clarificationStatus').textContent = "Clarification submitted successfully.";
+            document.getElementById('clarificationStatus').style.color = "green";
+            document.getElementById('clarificationComment').value = "";
+        } else {
+            document.getElementById('clarificationStatus').textContent = "Please enter a clarification.";
+            document.getElementById('clarificationStatus').style.color = "red";
+        }
+    });
 
+    document.getElementById('generateReportBtn').addEventListener('click', async function () {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
 
+        const statsText = document.getElementById("statisticsList").innerText;
+        const formattedText = `GUC Internship Report Statistics\n\n${statsText}`;
 
-document.getElementById('generateReportBtn').addEventListener('click', async function () {
-  const { jsPDF } = window.jspdf;
-  const doc = new jsPDF();
+        const lines = doc.splitTextToSize(formattedText, 180); // Wrap text
+        doc.text(lines, 15, 20);
 
-  const statsText = document.getElementById("statisticsList").innerText;
-  const formattedText = `GUC Internship Report Statistics\n\n${statsText}`;
+        doc.save("Internship_Report_Summary.pdf");
+    });
 
-  const lines = doc.splitTextToSize(formattedText, 180); // Wrap text
-  doc.text(lines, 15, 20);
-
-  doc.save("Internship_Report_Summary.pdf");
-});
-
-
-
-renderStatistics();
-
-
+    renderStatistics();
 });
