@@ -7,16 +7,44 @@ document.addEventListener('DOMContentLoaded', function() {
         id: 1,
         title: "Summer Internship at TechCorp",
         company: "TechCorp",
-        introduction: "This report summarizes my summer internship experience...",
-        body: "During my internship at TechCorp, I worked on several projects...",
-        date: "2023-08-15"
+        introduction: "During my summer internship at TechCorp, I worked as a software developer intern in the web development team. This experience provided me with valuable insights into professional software development practices and team collaboration in a corporate environment.",
+        tasks: [
+            "Developed responsive web components using React",
+            "Fixed bugs in the company's main product",
+            "Participated in daily stand-up meetings",
+            "Wrote unit tests for new features",
+            "Collaborated with UX designers to implement new interfaces"
+        ],
+        skills: [
+            "Improved my React and Redux skills",
+            "Learned about CI/CD pipelines",
+            "Gained experience with Agile methodologies",
+            "Improved my problem-solving skills",
+            "Enhanced my teamwork and communication abilities"
+        ],
+        conclusion: "This internship was a valuable experience that helped me bridge the gap between academic knowledge and real-world software development. I gained confidence in my technical abilities and learned how to work effectively in a professional team environment. I'm grateful for the opportunity and look forward to applying what I've learned in future projects and career opportunities.",
+        date: "2024-11-12"
       },
       {
         id: 2,
         title: "Winter Internship at DataSystems",
         company: "DataSystems",
-        introduction: "My winter internship focused on data analysis...",
-        body: "I was responsible for cleaning and analyzing large datasets...",
+        introduction: "My engineering internship at DataSystems focused on network infrastructure and telecommunications systems maintenance. This hands-on experience allowed me to apply my theoretical knowledge to real-world networking challenges.",
+        tasks: [
+            "Assisted in routine maintenance of network equipment",
+            "Participated in site surveys for network expansion",
+            "Helped troubleshoot connectivity issues",
+            "Documented technical procedures and processes",
+            "Assisted in network performance monitoring"
+        ],
+        skills: [
+            "Gained hands-on experience with telecom hardware",
+            "Learned network monitoring and diagnostic techniques",
+            "Improved technical documentation skills",
+            "Developed problem-solving approaches for network issues",
+            "Enhanced my understanding of network security principles"
+        ],
+        conclusion: "This internship provided practical experience that complemented my theoretical knowledge. Working with experienced engineers gave me insights into real-world challenges in telecommunications infrastructure. The exposure to different network configurations and troubleshooting scenarios has significantly improved my technical skills and prepared me for future roles in network engineering.",
         date: "2024-01-10"
       }
     ],
@@ -32,6 +60,102 @@ document.addEventListener('DOMContentLoaded', function() {
   // Hide loading overlay
   function hideLoading() {
     document.getElementById('loadingOverlay').style.display = 'none';
+  }
+
+  // Generate PDF for a report
+  function generateReportPDF(reportId) {
+    const report = studentData.internshipReports.find(r => r.id == reportId);
+    if (!report) return;
+
+    showLoading();
+    
+    // Use jsPDF
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    
+    // Add title
+    doc.setFontSize(18);
+    doc.setTextColor(5, 68, 94); // Primary dark color
+    doc.text(report.title, 105, 20, { align: 'center' });
+    
+    // Add metadata
+    doc.setFontSize(12);
+    doc.setTextColor(100, 100, 100);
+    doc.text(`Company: ${report.company}`, 105, 30, { align: 'center' });
+    doc.text(`Date: ${new Date(report.date).toLocaleDateString()}`, 105, 36, { align: 'center' });
+    
+    // Add introduction
+    doc.setFontSize(14);
+    doc.setTextColor(5, 68, 94);
+    doc.text('Introduction', 14, 50);
+    doc.setFontSize(11);
+    doc.setTextColor(0, 0, 0);
+    const introLines = doc.splitTextToSize(report.introduction, 180);
+    doc.text(introLines, 14, 60);
+    
+    // Add tasks
+    let yPosition = introLines.length * 6 + 70;
+    doc.setFontSize(14);
+    doc.setTextColor(5, 68, 94);
+    doc.text('Tasks Performed', 14, yPosition);
+    doc.setFontSize(11);
+    doc.setTextColor(0, 0, 0);
+    yPosition += 10;
+    
+    report.tasks.forEach(task => {
+      if (yPosition > 270) {
+        doc.addPage();
+        yPosition = 20;
+      }
+      doc.text('• ' + task, 20, yPosition);
+      yPosition += 7;
+    });
+    
+    // Add skills
+    yPosition += 5;
+    doc.setFontSize(14);
+    doc.setTextColor(5, 68, 94);
+    doc.text('Skills Learned', 14, yPosition);
+    doc.setFontSize(11);
+    doc.setTextColor(0, 0, 0);
+    yPosition += 10;
+    
+    report.skills.forEach(skill => {
+      if (yPosition > 270) {
+        doc.addPage();
+        yPosition = 20;
+      }
+      doc.text('• ' + skill, 20, yPosition);
+      yPosition += 7;
+    });
+    
+    // Add conclusion
+    yPosition += 5;
+    doc.setFontSize(14);
+    doc.setTextColor(5, 68, 94);
+    doc.text('Conclusion', 14, yPosition);
+    doc.setFontSize(11);
+    doc.setTextColor(0, 0, 0);
+    yPosition += 10;
+    
+    const conclusionLines = doc.splitTextToSize(report.conclusion, 180);
+    doc.text(conclusionLines, 14, yPosition);
+    
+    // Footer
+    const pageCount = doc.internal.getNumberOfPages();
+    for (let i = 1; i <= pageCount; i++) {
+      doc.setPage(i);
+      doc.setFontSize(10);
+      doc.setTextColor(100, 100, 100);
+      doc.text(`Page ${i} of ${pageCount}`, 105, 285, { align: 'center' });
+      doc.text('GUC Internship System', 200, 285, { align: 'right' });
+    }
+    
+    // Save the PDF
+    setTimeout(() => {
+      doc.save(`${report.title.replace(/ /g, '_')}_Report.pdf`);
+      hideLoading();
+    }, 500);
   }
 
   // Load evaluations
@@ -107,6 +231,9 @@ document.addEventListener('DOMContentLoaded', function() {
           </button>
           <button class="btn-primary edit-report-btn" data-id="${report.id}">
             <i class="fas fa-edit"></i> Edit
+          </button>
+          <button class="btn-secondary download-report-btn" data-id="${report.id}">
+            <i class="fas fa-download"></i> PDF
           </button>
           <button class="btn-secondary delete-report-btn" data-id="${report.id}">
             <i class="fas fa-trash"></i> Delete
@@ -272,8 +399,18 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
         
         <div class="form-group">
-          <label for="reportBody">Report Content *</label>
-          <textarea id="reportBody" required>${report ? report.body : ''}</textarea>
+          <label for="reportTasks">Tasks (one per line) *</label>
+          <textarea id="reportTasks" required>${report ? report.tasks.join('\n') : ''}</textarea>
+        </div>
+        
+        <div class="form-group">
+          <label for="reportSkills">Skills Learned (one per line) *</label>
+          <textarea id="reportSkills" required>${report ? report.skills.join('\n') : ''}</textarea>
+        </div>
+        
+        <div class="form-group">
+          <label for="reportConclusion">Conclusion *</label>
+          <textarea id="reportConclusion" required>${report ? report.conclusion : ''}</textarea>
         </div>
         
         <div class="form-actions">
@@ -299,7 +436,28 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('modalReportTitle').textContent = report.title;
     document.getElementById('modalReportMeta').textContent = `${report.company} • ${new Date(report.date).toLocaleDateString()}`;
     document.getElementById('modalReportIntro').textContent = report.introduction;
-    document.getElementById('modalReportBody').textContent = report.body;
+    
+    // Clear previous tasks and skills
+    const tasksList = document.getElementById('modalReportTasks');
+    const skillsList = document.getElementById('modalReportSkills');
+    tasksList.innerHTML = '';
+    skillsList.innerHTML = '';
+    
+    // Add tasks
+    report.tasks.forEach(task => {
+      const li = document.createElement('li');
+      li.textContent = task;
+      tasksList.appendChild(li);
+    });
+    
+    // Add skills
+    report.skills.forEach(skill => {
+      const li = document.createElement('li');
+      li.textContent = skill;
+      skillsList.appendChild(li);
+    });
+    
+    document.getElementById('modalReportConclusion').textContent = report.conclusion;
     
     document.getElementById('reportModal').style.display = 'block';
   }
@@ -382,12 +540,17 @@ document.addEventListener('DOMContentLoaded', function() {
         showLoading();
         
         const form = e.target;
+        const tasks = document.getElementById('reportTasks').value.split('\n').filter(task => task.trim() !== '');
+        const skills = document.getElementById('reportSkills').value.split('\n').filter(skill => skill.trim() !== '');
+        
         const report = {
           id: form.dataset.id || Date.now(),
           title: document.getElementById('reportTitle').value,
           company: document.getElementById('reportCompany').value,
           introduction: document.getElementById('reportIntroduction').value,
-          body: document.getElementById('reportBody').value,
+          tasks: tasks,
+          skills: skills,
+          conclusion: document.getElementById('reportConclusion').value,
           date: new Date().toISOString()
         };
         
@@ -443,6 +606,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const reportId = e.target.closest('button').dataset.id;
         const report = studentData.internshipReports.find(r => r.id == reportId);
         showReportForm(report);
+      }
+      
+      if (e.target.closest('.download-report-btn')) {
+        const reportId = e.target.closest('button').dataset.id;
+        generateReportPDF(reportId);
       }
       
       if (e.target.closest('.delete-report-btn')) {
