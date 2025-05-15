@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GUC Internship System - Faculty Member</title>
+    <link rel="stylesheet" href="Facultymember.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+
+<body>
+    <header class="header">
+    <div class="logo">GUC Internship System - Faculty Member Portal</div>
+    <div class="user-controls">
+        <span id="currentTime"></span>
+        <button id="logoutBtn">
+            <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+    </div>
+</header>
+
+    <main class="dashboard">
+        <nav class="sidebar">
+            <ul>
+    
+                <li data-section="reports"><i class="fas fa-file-alt"></i> Reports</li>
+            </ul>
+        </nav>
+
+        <div class="content">
+            <!-- Dashboard Section -->
+            <section id="dashboard-section" class="section active">
+                <div class="card">
+                    <h2><i class="fas fa-chart-line"></i> Report Statistics</h2>
+                    <ul id="statisticsList" class="stats-list"></ul>
+                </div>
+                <div class="card">
+                    <h2><i class="fas fa-file-export"></i> Generate Reports</h2>
+                    <button class="btn-primary" id="generateReportBtn">
+                        <i class="fas fa-file-download"></i> Download Statistics PDF
+                    </button>
+                </div>
+            </section>
+
+            <!-- Reports Section -->
+            <section id="reports-section" class="section">
+                <div class="card">
+                    <h2><i class="fas fa-file-alt"></i> Student Reports</h2>
+                    <div class="filters">
+                        <select id="reportFilter" class="filter-select">
+                            <option value="">All Reports</option>
+                            <option>Pending</option>
+                            <option>Accepted</option>
+                            <option>Flagged</option>
+                        </select>
+                    </div>
+                    <div class="report-list" id="reportList"></div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Report Modal -->
+<div id="reportModal" class="modal">
+    <div class="modal-content">
+        <button class="close-button" id="closeReportModal">&times;</button>
+        <h2 id="modalReportTitle">Report Details</h2>
+        
+        <div class="modal-section">
+            <h3>Introduction</h3>
+            <p id="modalReportIntroduction"></p>
+        </div>
+        
+        <div class="modal-section">
+            <h3>Tasks Performed</h3>
+            <ul id="modalReportTasks"></ul>
+        </div>
+        
+        <div class="modal-section">
+            <h3>Skills Learned</h3>
+            <ul id="modalReportSkills"></ul>
+        </div>
+        
+        <div class="modal-section">
+            <h3>Conclusion</h3>
+            <p id="modalReportConclusion"></p>
+        </div>
+        
+        <div class="modal-section">
+            <p><strong>Status:</strong> <span id="modalReportStatus" class="status-badge"></span></p>
+        </div>
+        
+        <div class="modal-section">
+            <h3>Clarification Comment</h3>
+            <textarea id="clarificationComment" placeholder="Enter your clarification here..."></textarea>
+        </div>
+        
+        <div class="modal-actions">
+            <button class="btn-primary" id="submitClarificationBtn">
+                Submit Clarification
+            </button>
+            <button class="btn-secondary" id="downloadSingleReportBtn">
+                Download Full Report
+            </button>
+        </div>
+    </div>
+</div>
+    <!-- Logout Modal -->
+    <div id="logoutModal" class="modal">
+        <div class="modal-content">
+            <h2><i class="fas fa-sign-out-alt"></i> Confirm Logout</h2>
+            <p>Are you sure you want to logout?</p>
+            <div class="form-actions">
+                <button class="btn-primary" id="confirmLogoutBtn">Yes, Logout</button>
+                <button class="btn-primary" id="cancelLogoutBtn">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="FacultyMember.js"></script>
+</body>
+</html>
