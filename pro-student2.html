@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PRO Student Portal | GUC Internship</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="pro-student2.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">GUC INTERNSHIP SYSTEM</div>
+    
+
+    
+  </header>
+  <!-- Hero Banner -->
+  <section class="hero-banner">
+    <h1>STUDENT/PRO STUDENT PORTAL</h1>
+    <p>Manage your profile and discover internship opportunities</p>
+  </section>
+
+  <nav class="main-nav">
+    <ul>
+      <li><a href="#profile-section"><i class="fas fa-user-graduate"></i> My Profile</a></li>
+      <li><a href="#internship-section"><i class="fas fa-briefcase"></i> Internships</a></li>
+      <li><a href="#applications-section"><i class="fas fa-file-alt"></i> My Applications</a></li>
+    </ul>
+  </nav>
+<!-- Place this right after the <nav> element -->
+<div style="position: absolute; right: 20px; top: 80px; display: flex; flex-direction: column; gap: 8px; width: 180px;">
+  <a href="login.html" class="btn-secondary" style="display: flex; align-items: center; justify-content: flex-start; gap: 0.5rem; text-decoration: none; padding: 0.4rem 0.8rem; border-radius: 6px; margin: 0; font-size: 0.85rem;">
+    <i class="fas fa-arrow-left"></i>
+    Back to Login
+  </a>
+  <a href="evaluation-report.html" class="btn-secondary" style="display: flex; align-items: center; justify-content: flex-start; gap: 0.5rem; text-decoration: none; padding: 0.4rem 0.8rem; border-radius: 6px; margin: 0; font-size: 0.85rem;">
+    <i class="fas fa-arrow-right"></i>
+    Evaluation & Reports
+  </a>
+  <a href="appointmentstudent.html" class="btn-secondary" style="display: flex; align-items: center; justify-content: flex-start; gap: 0.5rem; text-decoration: none; padding: 0.4rem 0.8rem; border-radius: 6px; margin: 0; font-size: 0.85rem;">
+    <i class="fas fa-arrow-right"></i>
+    Appointments
+  </a>
+  <a href="student.html" class="btn-secondary" style="display: flex; align-items: center; justify-content: flex-start; gap: 0.5rem; text-decoration: none; padding: 0.4rem 0.8rem; border-radius: 6px; margin: 0; font-size: 0.85rem;">
+    <i class="fas fa-arrow-right"></i>
+    Current & Past Internships
+  </a>
+</div>
+
+  <!-- Majors Selection Section -->
+<section class="card majors-card">
+  <h2><i class="fas fa-graduation-cap"></i> Academic Information</h2>
+  
+  <div class="selection-container">
+    <!-- Majors Dropdown -->
+    <div class="form-group">
+      <label for="major-select" class="form-label">Your Major:</label>
+      <select id="major-select" class="form-select">
+        <option value="" disabled selected>Select your major</option>
+        <!-- Options will be populated by JavaScript -->
+      </select>
+    </div>
+    
+    <!-- Semester Dropdown -->
+    <div class="form-group">
+      <label for="semester-select" class="form-label">Current Semester:</label>
+      <select id="semester-select" class="form-select" disabled>
+        <option value="" disabled selected>Select semester</option>
+        <!-- Options will be populated by JavaScript -->
+      </select>
+    </div>
+  </div>
+  
+  <!-- Selected Info Display -->
+  <div class="selected-info" id="selectedMajorInfo" style="display: none;">
+    <h3><i class="fas fa-info-circle"></i> Your Academic Path</h3>
+    <p>You are studying <strong id="displayMajor">Computer Science</strong> in <strong id="displaySemester">Semester 5</strong>.</p>
+  </div>
+</section>
+
+  <!-- Main Content -->
+  <main class="container">
+    <!-- Profile Section -->
+    <div class="card profile-card" id="profile-section"> 
+      <h2><i class="fas fa-user-graduate"></i> My Profile</h2>
+      
+      <!-- View Mode -->
+      <div id="profileView">
+        <div class="profile-header">
+          <div class="profile-pic">
+            <img src="https://via.placeholder.com/150" alt="Profile Picture">
+          </div>
+          <div class="profile-info">
+            <h3 id="studentName">Mohamed Ahmed</h3>
+            <p id="studentMajor">Computer Science</p>
+            <p id="studentGPA">GPA: 3.7</p>
+          </div>
+        </div>
+        
+        <div class="profile-section">
+          <h3><i class="fas fa-bullseye"></i> Job Interests</h3>
+          <div class="interests-container" id="interestsContainer"></div>
+        </div>
+        
+        <div class="profile-section">
+          <h3><i class="fas fa-briefcase"></i> Work Experience</h3>
+          <div class="experience-container" id="experienceContainer"></div>
+        </div>
+        
+        <div class="profile-section">
+          <h3><i class="fas fa-users"></i> College Activities</h3>
+          <div class="activities-container" id="activitiesContainer"></div>
+        </div>
+        
+        <button class="btn-primary" id="editProfileBtn">
+          <i class="fas fa-edit"></i> Edit Profile
+        </button>
+      </div>
+      
+      <!-- Edit Mode -->
+      <form id="profileForm" style="display: none;">
+        <!-- Basic Info -->
+        <div class="form-row">
+          <div class="input-group">
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" required>
+          </div>
+          <div class="input-group">
+            <label for="major">Major</label>
+            <input type="text" id="major" required>
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="input-group">
+            <label for="gpa">GPA</label>
+            <input type="number" id="gpa" step="0.1" min="0" max="4" required>
+          </div>
+          <div class="input-group">
+            <label for="gradYear">Graduation Year</label>
+            <input type="number" id="gradYear" required>
+          </div>
+        </div>
+        
+        <!-- Job Interests -->
+        <div class="input-group">
+          <label for="jobInterests">Job Interests (comma separated)</label>
+          <textarea id="jobInterests" rows="2" required></textarea>
+        </div>
+        
+        <!-- Work Experience -->
+        <h3><i class="fas fa-briefcase"></i> Work Experience</h3>
+        <div id="workExperienceForms"></div>
+        <button type="button" class="btn-secondary" id="addExperienceBtn">
+          <i class="fas fa-plus"></i> Add Experience
+        </button>
+        
+        <!-- College Activities -->
+        <h3><i class="fas fa-users"></i> College Activities</h3>
+        <div id="collegeActivityForms"></div>
+        <button type="button" class="btn-secondary" id="addActivityBtn">
+          <i class="fas fa-plus"></i> Add Activity
+        </button>
+        
+        <!-- Form Actions -->
+        <div class="form-actions">
+          <button type="submit" class="btn-primary">
+            <i class="fas fa-save"></i> Save Profile
+          </button>
+          <button type="button" class="btn-secondary" id="cancelEditBtn">
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+    
+    <!-- Suggested Companies -->
+    <div class="card companies-card">
+      <h2><i class="fas fa-building"></i> Suggested Companies</h2>
+      <p class="subtitle">Based on your profile and past interns' experiences</p>
+      
+      
+      <!-- Search and Filter -->
+      <div class="search-filter-container">
+        <div class="search-container">
+          <i class="fas fa-search"></i>
+          <input type="text" id="companySearch" placeholder="Search companies...">
+        </div>
+        <div class="filter-container">
+          <select id="companyFilter">
+            <option value="all">All Industries</option>
+            <option value="tech">Technology</option>
+            <option value="finance">Finance</option>
+            <option value="healthcare">Healthcare</option>
+          </select>
+        </div>
+      </div>
+      
+      <!-- Companies List -->
+      <div class="companies-list" id="companiesList"></div>
+    </div>
+    <!-- Add this section after your profile section -->
+<section class="card courses-card">
+  <h2><i class="fas fa-book-open"></i> My Courses</h2>
+  <p class="subtitle">Select courses that helped during your internship</p>
+  
+  <div class="courses-filter">
+    <div class="filter-group">
+      <label for="course-year-filter">Filter by Year:</label>
+      <select id="course-year-filter" class="form-select">
+        <option value="all">All Years</option>
+        <option value="1">First Year</option>
+        <option value="2">Second Year</option>
+        <option value="3">Third Year</option>
+        <option value="4">Fourth Year</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label for="course-semester-filter">Semester:</label>
+      <select id="course-semester-filter" class="form-select">
+        <option value="all">All Semesters</option>
+        <option value="1">Semester 1</option>
+        <option value="2">Semester 2</option>
+      </select>
+    </div>
+  </div>
+  
+  <div class="courses-list" id="coursesList">
+    <!-- Will be populated by JavaScript -->
+  </div>
+  
+  <div class="form-actions">
+    <button id="saveCoursesBtn" class="btn-primary">
+      <i class="fas fa-save"></i> Save Selected Courses
+    </button>
+  </div>
+</section>
+    <!-- Internships Section -->
+<section class="card internships-card" id="internship-section">
+  <h2><i class="fas fa-briefcase"></i> Internship Opportunities</h2>
+  <p class="subtitle">Find and apply for internships matching your profile</p>
+  
+  <!-- Search and Filter -->
+  <div class="search-filter-container">
+    <div class="search-container">
+      <i class="fas fa-search"></i>
+      <input type="text" id="internshipSearch" placeholder="Search by job title or company...">
+    </div>
+    <div class="filter-container">
+      <select id="internshipFilter">
+        <option value="all">All Industries</option>
+        <option value="tech">Technology</option>
+        <option value="finance">Finance</option>
+        <option value="healthcare">Healthcare</option>
+      </select>
+    </div>
+  </div>
+  <!-- Inside your application modal, update the form section -->
+<div class="form-group">
+  <label>Required Documents</label>
+  <div class="document-requirements">
+    <p><i class="fas fa-check-circle"></i> CV/Resume (required)</p>
+    <p><i class="fas fa-check-circle"></i> Academic Transcript (required)</p>
+  </div>
+</div>
+
+<div class="form-group">
+  <label>Additional Documents (Optional)</label>
+  <div class="file-upload-area" id="optionalUploadArea">
+    <div class="upload-instructions">
+      <i class="fas fa-cloud-upload-alt"></i>
+      <p>Upload certificates, cover letter, or other supporting documents</p>
+      <small>Accepted formats: PDF, DOCX, JPG, PNG (Max 5MB each)</small>
+    </div>
+    <input type="file" id="optionalFileInput" multiple accept=".pdf,.doc,.docx,.jpg,.jpeg,.png">
+  </div>
+  <div class="uploaded-files" id="optionalFilesList"></div>
+</div>
+  
+  <!-- Internships List -->
+  <div class="internships-list" id="internshipsList"></div>
+</section>
+
+<!-- My Applications Section -->
+<section class="card applications-card" id="applications-section">
+  <h2><i class="fas fa-clipboard-list"></i> My Applications</h2>
+  <p class="subtitle">Track the status of your internship applications</p>
+  
+  <!-- Filter Controls -->
+  <div class="filter-controls">
+    <div class="filter-group">
+      <label for="status-filter">Filter by Status:</label>
+      <select id="status-filter" class="form-select">
+        <option value="all">All Applications</option>
+        <option value="current">Current Internships</option>
+        <option value="completed">Completed Internships</option>
+        <option value="pending">Pending</option>
+        <option value="accepted">Accepted</option>
+        <option value="rejected">Rejected</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label for="date-filter">Filter by Date:</label>
+      <select id="date-filter" class="form-select">
+        <option value="all">All Dates</option>
+        <option value="last-month">Last Month</option>
+        <option value="last-3-months">Last 3 Months</option>
+        <option value="last-6-months">Last 6 Months</option>
+        <option value="last-year">Last Year</option>
+      </select>
+    </div>
+  </div>
+  
+  <!-- Applications List -->
+  <div class="applications-list" id="applicationsList">
+    <!-- Will be populated by JavaScript -->
+  </div>
+</section>
+
+
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>Our Internship System Works For You!</p>
+  </footer>
+  
+  
+
+  <script src="pro-student2.js"></script>
+  
+  
+</body>
+</html>
