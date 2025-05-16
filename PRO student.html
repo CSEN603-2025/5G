@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Dashboard | GUC Internship</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Base Styles */
+    :root {
+      --primary-light: #e0f7fa;
+      --primary-medium: #26c6da;
+      --primary-dark: #00838f;
+      --secondary-light: #f5f5f5;
+      --secondary-dark: #212121;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    /* Header Styles */
+    .header {
+      background-color: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 15px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .header-content {
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    /* Button Styles */
+    .btn {
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+    
+    .btn-primary {
+      background-color: var(--primary-medium);
+      color: white;
+      border: none;
+    }
+    
+    .btn-primary:hover {
+      background-color: var(--primary-dark);
+    }
+    
+    .btn-secondary {
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      border: none;
+    }
+    
+    .btn-secondary:hover {
+      background: var(--primary-medium);
+      color: white;
+    }
+    
+    /* Card Styles */
+    .card {
+      background: white;
+      border-radius: 10px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    }
+    
+    .card h2 {
+      margin-top: 0;
+      color: var(--primary-dark);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    /* Hero Banner */
+    .hero-banner {
+      background: linear-gradient(135deg, var(--primary-medium), var(--primary-dark));
+      color: white;
+      padding: 100px 0 60px;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .hero-banner h1 {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+    }
+    
+    /* Status Indicator Styles */
+    .report-status {
+      margin-top: 20px;
+    }
+    
+    .status-indicator {
+      display: flex;
+      gap: 15px;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      background: rgba(212, 241, 244, 0.3);
+      border-left: 4px solid var(--primary-medium);
+    }
+    
+    .status-indicator i {
+      font-size: 1.8rem;
+      margin-top: 5px;
+      flex-shrink: 0;
+    }
+    
+    .status-approved { color: var(--primary-medium); }
+    .status-rejected { color: #e74c3c; }
+    .status-flagged { color: #f39c12; }
+    
+    /* Comments and Response Section */
+    .comments-section {
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 1px dashed var(--primary-light);
+      width: 100%;
+    }
+    
+    .comment-box {
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      margin: 10px 0;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    
+    .appeal-form textarea {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid var(--primary-light);
+      border-radius: 8px;
+      margin: 10px 0;
+      min-height: 100px;
+      resize: vertical;
+    }
+    
+    /* Video Section */
+    .video-container {
+      display: flex;
+      gap: 30px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+    
+    .video-wrapper {
+      flex: 1;
+      min-width: 300px;
+      aspect-ratio: 16/9;
+    }
+    
+    .video-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      border-radius: 8px;
+      border: none;
+    }
+    
+    .video-description {
+      flex: 1;
+      min-width: 300px;
+    }
+    
+    /* Notification Center */
+    .notification-center-btn {
+      background: var(--primary-medium);
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+    }
+    
+    .notification-center-panel {
+      position: fixed;
+      top: 80px;
+      right: 20px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      padding: 20px;
+      width: 300px;
+      z-index: 99;
+      display: none;
+      animation: fadeIn 0.2s ease-out;
+    }
+    
+    .notification-center-panel h3 {
+      margin-top: 0;
+      color: var(--primary-dark);
+      border-bottom: 1px solid #eee;
+      padding-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .radio-group {
+      margin: 15px 0;
+    }
+    
+    .radio-option {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    
+    .radio-option input {
+      margin-right: 10px;
+    }
+    
+    /* Success Message */
+    .success-message {
+      background: rgba(117, 230, 218, 0.2);
+      border: 1px solid var(--primary-medium);
+      padding: 10px 15px;
+      border-radius: 8px;
+      margin-top: 15px;
+      display: none;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    /* Fixed Search Bar */
+    .persistent-search {
+      background: white;
+      padding: 15px 0;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: fixed;
+      top: 70px;
+      left: 0;
+      right: 0;
+      z-index: 98;
+    }
+    
+    .search-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .search-container input {
+      flex: 1;
+      padding: 10px 15px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+    
+    /* Adjust main content to account for fixed elements */
+    main.container {
+      margin-top: 140px;
+    }
+    
+    /* Cycle Notification Styles */
+    .cycle-notification {
+      background: rgba(212, 241, 244, 0.5);
+      border-left: 4px solid var(--primary-medium);
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+    
+    .cycle-notification i {
+      font-size: 1.5rem;
+      color: var(--primary-medium);
+    }
+    
+    .cycle-notification.new {
+      background: rgba(117, 230, 218, 0.3);
+      animation: pulse 2s infinite;
+    }
+    
+    /* Workshop Styles */
+    .workshops-container {
+      display: grid;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    
+    .workshop-card {
+      background: white;
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      border-left: 4px solid var(--primary-medium);
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .workshop-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    
+    .workshop-date {
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    
+    .workshop-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+    }
+    
+    .workshop-btn {
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      border: none;
+      padding: 8px 15px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    
+    .workshop-btn:hover {
+      background: var(--primary-medium);
+      color: white;
+    }
+    
+    .workshop-btn.primary {
+      background: var(--primary-medium);
+      color: white;
+    }
+    
+    .workshop-btn.primary:hover {
+      background: var(--primary-dark);
+    }
+    
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 20px;
+      background: var(--secondary-light);
+      color: var(--secondary-dark);
+      margin-top: 40px;
+    }
+    
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(24, 154, 180, 0.4); }
+      70% { box-shadow: 0 0 0 10px rgba(24, 154, 180, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(24, 154, 180, 0); }
+    }
+    
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      .video-container {
+        flex-direction: column;
+      }
+      
+      .notification-center-panel {
+        width: 90%;
+        right: 5%;
+        left: 5%;
+      }
+      
+      main.container {
+        margin-top: 130px;
+      }
+      
+      .header-content {
+        padding: 0 15px;
+      }
+      
+      .search-container {
+        padding: 0 15px;
+      }
+    }
+    
+    /* Job Search Results */
+    .search-results {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      border-radius: 0 0 8px 8px;
+      max-height: 400px;
+      overflow-y: auto;
+      z-index: 101;
+    }
+    
+    .search-result-item {
+      padding: 12px 15px;
+      border-bottom: 1px solid #eee;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    
+    .search-result-item:hover {
+      background: #f5f5f5;
+    }
+    
+    .search-result-item h4 {
+      margin: 0 0 5px 0;
+      color: var(--primary-dark);
+    }
+    
+    .search-result-item p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: #666;
+    }
+    
+    .search-result-item .type {
+      display: inline-block;
+      padding: 2px 8px;
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      border-radius: 4px;
+      font-size: 0.8rem;
+      margin-right: 8px;
+    }
+    
+    /* Dummy data for search */
+    #dummyData {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header with single back button -->
+  <header class="header">
+    <div class="header-content">
+      <a href="PROSTUDENT.html" class="btn btn-secondary">
+        <i class="fas fa-arrow-left"></i> Back
+      </a>
+      <button class="notification-center-btn" id="notificationCenterBtn">
+        <i class="fas fa-bell"></i> Notification Center
+      </button>
+    </div>
+  </header>
+
+  <!-- Persistent Search Bar -->
+  <div class="persistent-search">
+    <div class="search-container">
+      <i class="fas fa-search"></i>
+      <input type="text" id="globalSearch" placeholder="Search all job posts and internships...">
+      <button id="searchButton" class="btn btn-primary">
+        <i class="fas fa-search"></i> Search
+      </button>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+
+  <!-- Hidden dummy data for search -->
+  <div id="dummyData">
+    <!-- Job Posts -->
+    <div class="search-item" data-type="job" data-title="Frontend Developer" data-company="TechSolutions Inc." data-description="Looking for a skilled frontend developer with React experience for our Cairo office."></div>
+    <div class="search-item" data-type="job" data-title="UX Designer" data-company="Digital Creations" data-description="Join our design team to create beautiful user experiences for international clients."></div>
+    <div class="search-item" data-type="job" data-title="Backend Engineer" data-company="DataSystems" data-description="Node.js developer needed for building scalable backend systems."></div>
+    <div class="search-item" data-type="job" data-title="Media Content Creator" data-company="MediaPlus" data-description="Create engaging video content for our digital platforms."></div>
+    
+    <!-- Internships -->
+    <div class="search-item" data-type="internship" data-title="Summer Intern - Web Development" data-company="WebCrafters" data-description="8-week internship for students interested in modern web technologies."></div>
+    <div class="search-item" data-type="internship" data-title="Graphic Design Intern" data-company="CreativeMinds" data-description="Learn from industry professionals in our design studio internship program."></div>
+    <div class="search-item" data-type="internship" data-title="Software Engineering Intern" data-company="TechFuture" data-description="Hands-on experience with our development team on real projects."></div>
+    <div class="search-item" data-type="internship" data-title="Digital Marketing Intern" data-company="MarketGrow" data-description="Learn digital marketing strategies and work on real campaigns."></div>
+    
+    <!-- Workshops -->
+    <div class="search-item" data-type="workshop" data-title="Resume Writing Masterclass" data-company="GUC Career Center" data-description="Learn how to craft a professional resume that stands out to employers."></div>
+    <div class="search-item" data-type="workshop" data-title="Interview Preparation Workshop" data-company="GUC Career Center" data-description="Master the art of interviewing with tips from industry professionals."></div>
+  </div>
+
+  <!-- Notification Center Panel -->
+  <div class="notification-center-panel" id="notificationCenterPanel">
+    <h3><i class="fas fa-cog"></i> Notification Settings</h3>
+    
+    <div class="radio-group">
+      <h4>Notification Method:</h4>
+      <div class="radio-option">
+        <input type="radio" id="notify-email" name="notification-method" value="email" checked>
+        <label for="notify-email">Email Only</label>
+      </div>
+      <div class="radio-option">
+        <input type="radio" id="notify-browser" name="notification-method" value="browser">
+        <label for="notify-browser">Browser Only</label>
+      </div>
+      <div class="radio-option">
+        <input type="radio" id="notify-both" name="notification-method" value="both">
+        <label for="notify-both">Both Email and Browser</label>
+      </div>
+    </div>
+    
+    <div class="radio-group">
+      <h4>Frequency:</h4>
+      <div class="radio-option">
+        <input type="radio" id="freq-immediate" name="notification-freq" value="immediate" checked>
+        <label for="freq-immediate">Immediately</label>
+      </div>
+      <div class="radio-option">
+        <input type="radio" id="freq-daily" name="notification-freq" value="daily">
+        <label for="freq-daily">Daily Summary</label>
+      </div>
+      <div class="radio-option">
+        <input type="radio" id="freq-weekly" name="notification-freq" value="weekly">
+        <label for="freq-weekly">Weekly Summary</label>
+      </div>
+    </div>
+    
+    <button class="btn btn-primary" style="width: 100%; margin-top: 15px;">
+      <i class="fas fa-save"></i> Save Settings
+    </button>
+  </div>
+
+  <!-- Gradient Hero -->
+  <section class="hero-banner">
+    <h1>STUDENT DASHBOARD</h1>
+    <p>Manage your internship progress and reports</p>
+  </section>
+
+  <!-- Main Content -->
+  <main class="container">
+    <!-- New Cycle Notifications Card -->
+    <div class="card">
+      <h2><i class="fas fa-calendar-alt"></i> Internship Cycle Alerts</h2>
+      
+      <div class="cycle-notification new">
+        <i class="fas fa-bell"></i>
+        <div>
+          <h3>New Internship Cycle Starting Soon!</h3>
+          <p>The Summer 2025 internship cycle will begin on <strong>June 1, 2025</strong>. Applications open May 1, 2025.</p>
+          <small>Posted: April 25, 2025</small>
+        </div>
+      </div>
+      
+      <div class="cycle-notification">
+        <i class="fas fa-check-circle"></i>
+        <div>
+          <h3>Current Internship Cycle Active</h3>
+          <p>The Spring 2025 internship cycle is currently running until <strong>May 31, 2025</strong>.</p>
+          <small>Posted: February 1, 2025</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- Report Status Card -->
+    <div class="card">
+      <h2><i class="fas fa-file-alt"></i> My Internship Report Status</h2>
+      
+      <div class="report-status">
+        <!-- Approved Report -->
+        <div class="status-indicator approved">
+          <i class="fas fa-check-circle"></i>
+          <div>
+            <h3>Summer 2025 Internship Report</h3>
+            <p><strong>Status:</strong> <span class="status-approved">Approved</span></p>
+            <p><strong>Last Updated:</strong> June 15, 2025</p>
+          </div>
+        </div>
+        
+        <!-- Flagged Report (Visible by default) -->
+        <div class="status-indicator flagged">
+          <i class="fas fa-flag"></i>
+          <div>
+            <h3>Fall 2024 Internship Report</h3>
+            <p><strong>Status:</strong> <span class="status-flagged">Flagged for Review</span></p>
+            <p><strong>Last Updated:</strong> October 5, 2024</p>
+            
+            <!-- Comments Section (Visible by default) -->
+            <div class="comments-section">
+              <h4><i class="fas fa-comment"></i> Supervisor Comments:</h4>
+              <div class="comment-box">
+                <p>"Your weekly hours log doesn't match the company's records. Please verify and provide clarification for weeks 3-5."</p>
+                <small>- Prof. Mervat Abuelkheir (Supervisor)</small>
+              </div>
+              
+              <!-- Response Form -->
+              <div class="appeal-form">
+                <h4><i class="fas fa-reply"></i> Submit Response</h4>
+                <textarea id="responseText" placeholder="Provide your clarification or additional information..."></textarea>
+                <button class="btn btn-secondary" onclick="submitResponse()">
+                  <i class="fas fa-paper-plane"></i> Submit Response
+                </button>
+                <div id="successMessage" class="success-message">
+                  <i class="fas fa-check-circle"></i>
+                  <span>Message submitted successfully!</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Internship Guidelines Card -->
+    <div class="card">
+      <h2><i class="fas fa-graduation-cap"></i> Internship Requirements for MET Majors</h2>
+      
+      <div class="video-container">
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Internship Guidelines" allowfullscreen></iframe>
+        </div>
+        <div class="video-description">
+          <h3>Eligible Internships for Media Engineering Students</h3>
+          <ul>
+            <li><i class="fas fa-check-circle"></i> Media production companies</li>
+            <li><i class="fas fa-check-circle"></i> Web development roles</li>
+            <li><i class="fas fa-check-circle"></i> UX/UI design positions</li>
+            <li><i class="fas fa-check-circle"></i> Game development studios</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Career Workshops Card -->
+    <div class="card">
+      <h2><i class="fas fa-chalkboard-teacher"></i> Upcoming Career Workshops</h2>
+      
+      <div class="workshops-container">
+        <div class="workshop-card">
+          <div class="workshop-header">
+            <h3>Resume Writing Masterclass</h3>
+            <span class="workshop-date">May 15, 2025 | 2:00 PM</span>
+          </div>
+          <p>Learn how to craft a professional resume that stands out to employers. Perfect for students applying for internships.</p>
+         
+            <button class="workshop-btn">
+              <i class="fas fa-calendar-plus"></i> Add to Calendar
+            </button>
+          </div>
+        </div>
+        
+        <div class="workshop-card">
+          <div class="workshop-header">
+            <h3>Interview Preparation Workshop</h3>
+            <span class="workshop-date">May 22, 2025 | 3:30 PM</span>
+          </div>
+          <p>Master the art of interviewing with tips from industry professionals and mock interview sessions.</p>
+         
+            <button class="workshop-btn">
+              <i class="fas fa-calendar-plus"></i> Add to Calendar
+            </button>
+          </div>
+       
+        
+        <div class="workshop-card">
+          <div class="workshop-header">
+            <h3>LinkedIn Profile Optimization</h3>
+            <span class="workshop-date">June 5, 2025 | 1:00 PM</span>
+          </div>
+          <p>Learn how to create a powerful LinkedIn profile that attracts recruiters and showcases your skills.</p>
+          
+            <button class="workshop-btn">
+              <i class="fas fa-calendar-plus"></i> Add to Calendar
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <button class="btn btn-secondary" style="margin-top: 20px;">
+        <i class="fas fa-calendar-alt"></i> View All Workshops
+      </button>
+    </div>
+     </div>
+  </main>
+
+
+
+  <script>
+    // Submit response function
+    function submitResponse() {
+      const responseText = document.getElementById('responseText').value;
+      if (responseText.trim() === '') {
+        alert('Please enter your response before submitting');
+        return;
+      }
+      
+      // Show success message
+      const successMsg = document.getElementById('successMessage');
+      successMsg.style.display = 'flex';
+      
+      // Clear textarea
+      document.getElementById('responseText').value = '';
+      
+      // Hide success message after 3 seconds
+      setTimeout(() => {
+        successMsg.style.display = 'none';
+      }, 3000);
+    }
+
+    // Toggle notification center panel
+    const notificationBtn = document.getElementById('notificationCenterBtn');
+    const notificationPanel = document.getElementById('notificationCenterPanel');
+    
+    notificationBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      notificationPanel.style.display = notificationPanel.style.display === 'block' ? 'none' : 'block';
+    });
+
+    // Close panel when clicking outside
+    document.addEventListener('click', function() {
+      notificationPanel.style.display = 'none';
+    });
+
+    // Prevent panel from closing when clicking inside it
+    notificationPanel.addEventListener('click', function(e) {
+      e.stopPropagation();
+    });
+
+    // Workshop functionality
+    document.querySelectorAll('.workshop-btn.primary').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const workshopTitle = this.closest('.workshop-card').querySelector('h3').textContent;
+        alert(`Preparing to launch: ${workshopTitle}\nThis would open the video workshop in a real implementation.`);
+      });
+    });
+
+    document.querySelectorAll('.workshop-btn:not(.primary)').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const workshopCard = this.closest('.workshop-card');
+        const workshopTitle = workshopCard.querySelector('h3').textContent;
+        const workshopDate = workshopCard.querySelector('.workshop-date').textContent;
+        alert(`Added to calendar: ${workshopTitle}\nDate: ${workshopDate}`);
+      });
+    });
+    
+    // Search functionality
+    const searchInput = document.getElementById('globalSearch');
+    const searchResults = document.getElementById('searchResults');
+    const searchButton = document.getElementById('searchButton');
+    
+    // Dummy data for search
+    const dummyItems = [
+      {
+        type: 'job',
+        title: 'Frontend Developer',
+        company: 'TechSolutions Inc.',
+        description: 'Looking for a skilled frontend developer with React experience for our Cairo office.'
+      },
+      {
+        type: 'job',
+        title: 'UX Designer',
+        company: 'Digital Creations',
+        description: 'Join our design team to create beautiful user experiences for international clients.'
+      },
+      {
+        type: 'job',
+        title: 'Backend Engineer',
+        company: 'DataSystems',
+        description: 'Node.js developer needed for building scalable backend systems.'
+      },
+      {
+        type: 'job',
+        title: 'Media Content Creator',
+        company: 'MediaPlus',
+        description: 'Create engaging video content for our digital platforms.'
+      },
+      {
+        type: 'internship',
+        title: 'Summer Intern - Web Development',
+        company: 'WebCrafters',
+        description: '8-week internship for students interested in modern web technologies.'
+      },
+      {
+        type: 'internship',
+        title: 'Graphic Design Intern',
+        company: 'CreativeMinds',
+        description: 'Learn from industry professionals in our design studio internship program.'
+      },
+      {
+        type: 'internship',
+        title: 'Software Engineering Intern',
+        company: 'TechFuture',
+        description: 'Hands-on experience with our development team on real projects.'
+      },
+      {
+        type: 'internship',
+        title: 'Digital Marketing Intern',
+        company: 'MarketGrow',
+        description: 'Learn digital marketing strategies and work on real campaigns.'
+      },
+      {
+        type: 'workshop',
+        title: 'Resume Writing Masterclass',
+        company: 'GUC Career Center',
+        description: 'Learn how to craft a professional resume that stands out to employers.'
+      },
+      {
+        type: 'workshop',
+        title: 'Interview Preparation Workshop',
+        company: 'GUC Career Center',
+        description: 'Master the art of interviewing with tips from industry professionals.'
+      }
+    ];
+    
+    // Search function
+    function performSearch(query) {
+      if (!query.trim()) {
+        searchResults.style.display = 'none';
+        return;
+      }
+      
+      const lowerQuery = query.toLowerCase();
+      const results = dummyItems.filter(item => 
+        item.title.toLowerCase().includes(lowerQuery) || 
+        item.company.toLowerCase().includes(lowerQuery) ||
+        item.description.toLowerCase().includes(lowerQuery)
+      );
+      
+      displayResults(results);
+    }
+    
+    // Display search results
+    function displayResults(results) {
+      searchResults.innerHTML = '';
+      
+      if (results.length === 0) {
+        const noResults = document.createElement('div');
+        noResults.className = 'search-result-item';
+        noResults.innerHTML = '<p>No results found</p>';
+        searchResults.appendChild(noResults);
+      } else {
+        results.forEach(item => {
+          const resultItem = document.createElement('div');
+          resultItem.className = 'search-result-item';
+          resultItem.innerHTML = `
+            <h4>${item.title}</h4>
+            <p><span class="type">${item.type}</span> ${item.company}</p>
+            <p>${item.description}</p>
+          `;
+          searchResults.appendChild(resultItem);
+          
+          // Add click handler to navigate to relevant section
+          resultItem.addEventListener('click', function() {
+            if (item.type === 'workshop') {
+              window.location.hash = '#workshops';
+              searchInput.value = '';
+              searchResults.style.display = 'none';
+            } else if (item.type === 'internship') {
+              window.location.href = 'internships.html';
+            } else {
+              window.location.href = 'jobs.html';
+            }
+          });
+        });
+      }
+      
+      searchResults.style.display = 'block';
+    }
+    
+    // Event listeners for search
+    searchInput.addEventListener('input', function() {
+      performSearch(this.value);
+    });
+    
+    searchButton.addEventListener('click', function() {
+      performSearch(searchInput.value);
+    });
+    
+    // Close search results when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!searchResults.contains(e.target) && e.target !== searchInput && e.target !== searchButton) {
+        searchResults.style.display = 'none';
+      }
+    });
+    
+    // Simulate notification
+    setTimeout(() => {
+      const notification = document.createElement('div');
+      notification.className = 'notification new';
+      notification.innerHTML = `
+        <i class="fas fa-file-alt"></i>
+        <div>
+          <h3>Report Status Updated</h3>
+          <p>Your Winter 2024 report has been reviewed</p>
+          <small>Just now</small>
+        </div>
+      `;
+    }, 2000);
+    // Expanded workshop data
+const workshopData = [
+  {
+    id: 1,
+    title: "Resume Writing Masterclass",
+    date: "May 15, 2025 | 2:00 PM",
+    description: "Learn how to craft a professional resume that stands out to employers. Perfect for students applying for internships.",
+    speaker: "Dr. Ahmed Hassan (Career Center Director)",
+    location: "Building C, Room 302"
+  },
+  {
+    id: 2,
+    title: "Interview Preparation Workshop",
+    date: "May 22, 2025 | 3:30 PM",
+    description: "Master the art of interviewing with tips from industry professionals and mock interview sessions.",
+    speaker: "Ms. Nadia Kamel (HR Manager, TechSolutions)",
+    location: "Online (Zoom)"
+  },
+  {
+    id: 3,
+    title: "LinkedIn Profile Optimization",
+    date: "June 5, 2025 | 1:00 PM",
+    description: "Learn how to create a powerful LinkedIn profile that attracts recruiters and showcases your skills.",
+    speaker: "Mr. Omar Sherif (Digital Marketing Specialist)",
+    location: "Building B, Room 105"
+  },
+  {
+    id: 4,
+    title: "Networking Strategies",
+    date: "June 12, 2025 | 4:00 PM",
+    description: "Develop professional networking skills to build valuable industry connections.",
+    speaker: "Ms. Yasmine Adel (Alumni Relations)",
+    location: "Career Center Hall"
+  },
+  {
+    id: 5,
+    title: "Personal Branding",
+    date: "June 19, 2025 | 11:00 AM",
+    description: "Discover how to build and communicate your unique professional brand.",
+    speaker: "Dr. Hani Mahmoud (Business Development)",
+    location: "Building A, Room 201"
+  },
+  {
+    id: 6,
+    title: "Career Path Planning",
+    date: "June 26, 2025 | 2:30 PM",
+    description: "Learn how to map out your career trajectory and set achievable goals.",
+    speaker: "Prof. Mona ElShazly (Faculty Advisor)",
+    location: "Online (Microsoft Teams)"
+  }
+];
+
+// Function to show all workshops
+function showAllWorkshops() {
+  const container = document.createElement('div');
+  container.className = 'workshops-full-view';
+  container.innerHTML = `
+    <div class="card">
+      <h2><i class="fas fa-chalkboard-teacher"></i> All Career Workshops</h2>
+      <div class="workshops-full-container" id="allWorkshopsContainer"></div>
+      <button class="btn btn-secondary" onclick="this.closest('.workshops-full-view').remove()">
+        <i class="fas fa-times"></i> Close
+      </button>
+    </div>
+  `;
+  
+  document.body.appendChild(container);
+  
+  const workshopsContainer = document.getElementById('allWorkshopsContainer');
+  workshopData.forEach(workshop => {
+    const workshopCard = document.createElement('div');
+    workshopCard.className = 'workshop-card expanded';
+    workshopCard.innerHTML = `
+      <div class="workshop-header">
+        <h3>${workshop.title}</h3>
+        <span class="workshop-date">${workshop.date}</span>
+      </div>
+      <p><strong>Description:</strong> ${workshop.description}</p>
+      <p><strong>Speaker:</strong> ${workshop.speaker}</p>
+      <p><strong>Location:</strong> ${workshop.location}</p>
+      <div class="workshop-actions">
+        <button class="workshop-btn primary">
+          <i class="fas fa-video"></i> Join Workshop
+        </button>
+        <button class="workshop-btn">
+          <i class="fas fa-calendar-plus"></i> Add to Calendar
+        </button>
+        <button class="workshop-btn">
+          <i class="fas fa-share-alt"></i> Share
+        </button>
+      </div>
+    `;
+    workshopsContainer.appendChild(workshopCard);
+  });
+  
+  // Add event listeners to new buttons
+  document.querySelectorAll('.workshops-full-view .workshop-btn.primary').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const workshopTitle = this.closest('.workshop-card').querySelector('h3').textContent;
+      alert(`Joining workshop: ${workshopTitle}`);
+    });
+  });
+}
+
+// Add click handler to "View All Workshops" button
+document.querySelector('.btn-secondary[style*="margin-top: 20px"]').addEventListener('click', showAllWorkshops);
+  // Workshop notification system
+function checkUpcomingWorkshops() {
+  // In a real app, you would check dates and only notify about upcoming ones
+  const upcomingWorkshops = workshopData.slice(0, 3); // Get first 3 workshops as "upcoming"
+  
+  // Check if we should show notification (e.g., once per day)
+  const lastNotification = localStorage.getItem('lastWorkshopNotification');
+  const today = new Date().toDateString();
+  
+  if (lastNotification !== today) {
+    showWorkshopNotification(upcomingWorkshops);
+    localStorage.setItem('lastWorkshopNotification', today);
+  }
+}
+
+function showWorkshopNotification(workshops) {
+  const notificationPanel = document.getElementById('notificationCenterPanel');
+  
+  workshops.forEach(workshop => {
+    const notification = document.createElement('div');
+    notification.className = 'notification new';
+    notification.innerHTML = `
+      <i class="fas fa-chalkboard-teacher"></i>
+      <div>
+        <h3>Upcoming Workshop: ${workshop.title}</h3>
+        <p>${workshop.date} at ${workshop.location}</p>
+        <small>${workshop.description}</small>
+      </div>
+    `;
+    notificationPanel.prepend(notification);
+  });
+  
+  // Also show a toast notification
+  const toast = document.createElement('div');
+  toast.className = 'toast-notification';
+  toast.innerHTML = `
+    <div class="toast-content">
+      <i class="fas fa-chalkboard-teacher"></i>
+      <div>
+        <p><strong>Upcoming Workshops</strong></p>
+        <p>You have ${workshops.length} career workshops coming up!</p>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(toast);
+  
+  setTimeout(() => {
+    toast.style.animation = 'slideIn 0.3s ease-out reverse';
+    setTimeout(() => toast.remove(), 300);
+  }, 5000);
+}
+
+// Check for workshop notifications when page loads
+document.addEventListener('DOMContentLoaded', function() {
+  setTimeout(checkUpcomingWorkshops, 2000); // Delay slightly for better UX
+});
+  </script>
+</body>
+</html>
